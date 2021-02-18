@@ -1,0 +1,16 @@
+{
+  "name": "SDEV328/Projects/sdev328_final",
+  "authors": [
+    {
+      "name": "Husrav Khomidov",
+      "email": "kkhomidov2@mail.greenriver.edu"
+    },
+    {
+      "name": "Ryan Rivera",
+      "email":"rrivera@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
