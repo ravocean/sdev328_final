@@ -1,0 +1,113 @@
+Queries and scripts for the final project database
+
+________ACCOUNT TABLE________
+
+CREATE TABLE account (
+	accountID` int(11) AUTO_INCREMENT,
+	username varchar(50) NOT NULL,
+	password varchar(50) NOT NULL,
+	PRIMARY KEY (accountID)
+	);
+
+INSERT INTO account VALUES (
+	null,
+	'ryeguy123',
+	'pass123'
+	);
+
+
+________CUSTOMER TABLE________
+
+CREATE TABLE customer (
+	customerID INT AUTO_INCREMENT,
+	accountID INT NOT NULL,
+	firstName VARCHAR(30) NOT NULL,
+	lastName VARCHAR(30) NOT NULL,
+	addressLine1 VARCHAR(100) NOT NULL,
+	addressLine2 VARCHAR(100) NOT NULL,
+	city VARCHAR(30) NOT NULL,
+	state VARCHAR(2) NOT NULL,
+	zip VARCHAR(11) NOT NULL,
+	phone VARCHAR(11) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	dateCreated DATE NOT NULL,
+	PRIMARY KEY (customerID),
+	FOREIGN KEY (accountID) REFERENCES account(accountID)
+	);
+
+INSERT INTO customer VALUES (
+	null,
+	##accountID##,
+	'Ryan',
+	'Rivera',
+	'123 Main St SE',
+	'Apt104',
+	'Auburn',
+	'WA',
+	98092,
+	2535551234,
+	'ryandrivera@yahoo.com',
+	'2012-01-01'
+	);
+
+
+--------TECHNICIAN TABLE--------
+
+CREATE TABLE technician (
+	technicianID INT NOT NULL,
+	accountID INT NOT NULL,
+	firstName VARCHAR(30) NOT NULL,
+	lastName VARCHAR(30) NOT NULL,
+	dateCreated DATE NOT NULL,
+	PRIMARY KEY (technicianID),
+	FOREIGN KEY (accountID) REFERENCES account(accountID)
+	);
+
+
+--------VEHICLE TABLE--------
+
+CREATE TABLE vehicle (
+	vehicleID INT NOT NULL AUTO_INCREMENT,
+	customerID INT NOT NULL,
+	year INT NOT NULL,
+	make VARCHAR(30) NOT NULL,
+	model VARCHAR(30) NOT NULL,
+	mileage INT NOT NULL,
+	maintenanceID VARCHAR(50) NOT NULL,
+	PRIMARY KEY (vehicleID),
+	FOREIGN KEY (customerID) REFERENCES customer(customerID),
+	FOREIGN KEY (maintenanceID) REFERENCES maintenance(maintenanceID)
+	);
+
+INSERT INTO vehicle VALUES (
+	null,
+	##customerID##,
+	2008,
+	'Toyota',
+	'FJ Cruiser',
+	132786,
+	##maintenanceID##
+	);
+
+
+--------MAINTENANCE TABLE--------
+
+CREATE TABLE maintenance (
+	maintenanceID INT NOT NULL AUTO_INCREMENT,
+	task VARCHAR(50) NOT NULL,
+	description VARCHAR(255) NOT NULL,
+	PRIMARY KEY (maintenanceID)
+	);
+
+INSERT INTO maintenance VALUES (
+	null,
+	'Oil Change',
+	'Replacement of engine oil and oil filter'
+	);
+
+
+--------QUERY JOINS TESTING--------
+
+SELECT firstName, username FROM account NATURAL JOIN customer
+
+SELECT firstName, year, make, model, task, description FROM account NATURAL JOIN customer NATURAL JOIN vehicle NATURAL JOIN maintenance
