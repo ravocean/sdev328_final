@@ -1,0 +1,63 @@
+
+.mainSection {
+
+    max-width: 1200px;
+    margin: 50px auto;
+    position: relative;
+
+}
+
+
+.admin-cont{
+    max-width: 1200px;
+}
+.fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
+
+.btn-custom {
+    color: #fff;
+    background-color: #2d7da2;
+    border-color: #22627c;
+}
+
+.bg-dark {
+    background: #2C3E50;!important;
+    background: -webkit-linear-gradient(to right, #2d7da2, #65a1bd);!important;
+    background: linear-gradient(to right, #2d7da2, #65a1bd); !important;
+}
+
+.header{
+    background: #2C3E50;!important;
+    background: -webkit-linear-gradient(to right, #2d7da2, #65a1bd);!important;
+    background: linear-gradient(to right, #2d7da2, #65a1bd); !important;
+
+    color: white;!important;
+}
+
+.footer{
+    background: #2C3E50;!important;
+    background: -webkit-linear-gradient(to right, #2d7da2, #65a1bd);!important;
+    background: linear-gradient(to right, #2d7da2, #65a1bd); !important;
+
+    color: white;!important;
+}
+
+.container-comp {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+
+}
