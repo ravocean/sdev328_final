@@ -4,22 +4,64 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//Start a session
+//Require files
+require_once('vendor/autoload.php');
+
+//Start Session
 session_start();
 
-//Require the autoload file
-require_once('vendor/autoload.php');
+//Connect to Server
+require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
+$controller = new Controller($f3);
+$dataLayer = new DataLayer($dbh);
+$validator = new Validate();
+
 //Default Route
 $f3->route('GET /', function() {
-
-    $view = new Template();
-    echo $view->render('views/home.html');
+    global $controller;
+    $controller->home();
 });
+
+//Route to Login
+$f3->route('GET|POST /login', function() {
+    global $controller;
+    $controller->login();
+});
+
+//Route to Account Creation
+$f3->route('GET|POST /newAccount', function() {
+    global $controller;
+    $controller->newAccount();
+});
+
+//Route to User dashboard
+$f3->route('GET|POST /userdash', function() {
+    global $controller;
+    $controller->userDash();
+});
+
+//Route to Admin dashboard
+$f3->route('GET|POST /admindash', function() {
+    global $controller;
+    $controller->adminDash();
+});
+
+
+
+
+
+
+
+//Run fat free
+$f3->run();
+
+
+
 
 /*//Order 1 Route
 $f3->route('GET /order', function($f3) {
@@ -65,6 +107,3 @@ $f3->route('POST /order2', function() {
     $view = new Template();
     echo $view->render('views/pet-order2.html');
 });*/
-
-//Run fat free
-$f3->run();

@@ -1,45 +1,65 @@
 Queries and scripts for the final project database
 
+
+
+________MISC SCRIPTS________
+DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS technician;
+DROP TABLE IF EXISTS vehicle;
+
+
+
+
 ________ACCOUNT TABLE________
 
 CREATE TABLE account (
-	accountID` int(11) AUTO_INCREMENT,
-	username varchar(50) NOT NULL,
-	password varchar(50) NOT NULL,
+	accountID int(11) AUTO_INCREMENT,
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
 	PRIMARY KEY (accountID)
 	);
 
 INSERT INTO account VALUES (
 	null,
-	'ryeguy123',
-	'pass123'
-	);
-
+    'ryan123',
+    'pass123',
+    'Ryan',
+    'Rivera'
+);
 
 ________CUSTOMER TABLE________
 
 CREATE TABLE customer (
 	customerID INT AUTO_INCREMENT,
-	accountID INT NOT NULL,
-	firstName VARCHAR(30) NOT NULL,
-	lastName VARCHAR(30) NOT NULL,
+	vehicleID INT NOT NULL,
 	addressLine1 VARCHAR(100) NOT NULL,
 	addressLine2 VARCHAR(100) NOT NULL,
 	city VARCHAR(30) NOT NULL,
 	state VARCHAR(2) NOT NULL,
 	zip VARCHAR(11) NOT NULL,
-	phone VARCHAR(11) NOT NULL,
+	phone VARCHAR(10) NOT NULL,
 	email VARCHAR(50) NOT NULL,
-	dateCreated DATE NOT NULL,
 	PRIMARY KEY (customerID),
 	FOREIGN KEY (accountID) REFERENCES account(accountID)
 	);
 
+    CREATE TABLE customer (
+        accountID INT,
+        addressLine1 VARCHAR(100) NOT NULL,
+        addressLine2 VARCHAR(100) NOT NULL,
+        city VARCHAR(30) NOT NULL,
+        state VARCHAR(2) NOT NULL,
+        zip VARCHAR(11) NOT NULL,
+        phone VARCHAR(10) NOT NULL,
+        email VARCHAR(50) NOT NULL,
+        FOREIGN KEY (accountID) REFERENCES account(accountID)
+    );
+
 INSERT INTO customer VALUES (
-	null,
 	##accountID##,
-	'Ryan',
-	'Rivera',
 	'123 Main St SE',
 	'Apt104',
 	'Auburn',
@@ -47,7 +67,6 @@ INSERT INTO customer VALUES (
 	98092,
 	2535551234,
 	'ryandrivera@yahoo.com',
-	'2012-01-01'
 	);
 
 
@@ -55,7 +74,7 @@ INSERT INTO customer VALUES (
 
 CREATE TABLE technician (
 	technicianID INT NOT NULL,
-	accountID INT NOT NULL,
+	invoiceID INT NOT NULL,
 	firstName VARCHAR(30) NOT NULL,
 	lastName VARCHAR(30) NOT NULL,
 	dateCreated DATE NOT NULL,
@@ -89,25 +108,16 @@ INSERT INTO vehicle VALUES (
 	##maintenanceID##
 	);
 
-
---------MAINTENANCE TABLE--------
-
-CREATE TABLE maintenance (
-	maintenanceID INT NOT NULL AUTO_INCREMENT,
-	task VARCHAR(50) NOT NULL,
-	description VARCHAR(255) NOT NULL,
-	PRIMARY KEY (maintenanceID)
-	);
-
-INSERT INTO maintenance VALUES (
-	null,
-	'Oil Change',
-	'Replacement of engine oil and oil filter'
-	);
-
-
 --------QUERY JOINS TESTING--------
 
 SELECT firstName, username FROM account NATURAL JOIN customer
 
 SELECT firstName, year, make, model, task, description FROM account NATURAL JOIN customer NATURAL JOIN vehicle NATURAL JOIN maintenance
+
+--------CUSTOMER TABLE--------
+invoiceID
+first
+last
+vehicle
+service
+status
