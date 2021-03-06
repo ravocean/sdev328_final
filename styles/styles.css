@@ -27,6 +27,11 @@
     border-color: #22627c;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #000;!important;
+    background-color: #efefef;!important;
+}
+
 .bg-dark {
     background: #2C3E50;!important;
     background: -webkit-linear-gradient(to right, #2d7da2, #65a1bd);!important;
