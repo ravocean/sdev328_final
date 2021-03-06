@@ -20,6 +20,9 @@ class Controller
     }
 
     public function home(){
+        //Set page title
+        $this->_f3->set('title', 'South Garage');
+
         $view = new Template();
         echo $view->render('views/home.html');
     }
@@ -28,6 +31,9 @@ class Controller
     {
         global $dataLayer;
         global $account;
+
+        //Set page title
+        $this->_f3->set('title', 'Login');
 
         if ($_SERVER['REQUEST_METHOD']=='POST') {
             $dataLayer->checkLoginCred();
@@ -41,6 +47,9 @@ class Controller
     function newAccount(){
         global $dataLayer;
         global $validator;
+
+        //Set page title
+        $this->_f3->set('title', 'Create Account');
 
         //Load states into $f3
         $this->_f3->set("listStates", $dataLayer->getStates());
@@ -85,7 +94,7 @@ class Controller
             //Reroute
         }
 
-        var_dump($_POST);
+//        var_dump($_POST);
 
         //Render the page
         $view = new Template();
@@ -94,11 +103,17 @@ class Controller
 
 
     public function userDash(){
+        //Set page title
+        $this->_f3->set('title', 'User Dashboard');
+
         $view = new Template();
         echo $view->render('views/userDash.html');
     }
 
     public function adminDash(){
+        //Set page title
+        $this->_f3->set('title', 'Admin Dashboard');
+
         $view = new Template();
         echo $view->render('views/adminDash.html');
     }
