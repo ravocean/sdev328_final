@@ -20,8 +20,8 @@ class Controller
     }
 
     public function home(){
-        //Set page title
-        $this->_f3->set('title', 'South Garage');
+        //Set the page title
+        $this->_f3->set("title", "South Garage");
 
         $view = new Template();
         echo $view->render('views/home.html');
@@ -30,13 +30,45 @@ class Controller
     function login()
     {
         global $dataLayer;
-        global $account;
+        global $validator;
 
-        //Set page title
-        $this->_f3->set('title', 'Login');
+        //Set the page title
+        $this->_f3->set("title", "Login");
+        $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
+        $this->_f3->set("pass", isset($_POST['pass']) ? $_POST['pass'] : "");
 
         if ($_SERVER['REQUEST_METHOD']=='POST') {
-            $dataLayer->checkLoginCred();
+
+            //Validate email
+            if($validator->validEmail($_POST['email'])){
+                $_SESSION['email'] = $_POST['email'];
+
+            }
+            else{
+                $this->_f3->set("errors['email']", 'Please enter a valid email');
+            }
+
+            //Validate password
+            if($validator->validPass($_POST['pass'])){
+                $_SESSION['pass'] = $_POST['pass'];
+            }
+            else{
+                $this->_f3->set("errors['pass']", 'Please enter a password');
+            }
+
+            //If both email and password are valid
+            if(empty($this->_f3->get('errors'))){
+
+                //Check account database for a match
+                if($dataLayer->checkLoginCred($_SESSION['email'], $_SESSION['pass'])){
+                    echo "USER EXISTS";
+                }
+                //If email and password pair do not exist in the database, display error
+                else{
+                    $this->_f3->set("errors['email']", 'The email or password you entered isn\'t 
+                    connected to an account.');
+                }
+            }
         }
 
         //Render the page
@@ -48,11 +80,11 @@ class Controller
         global $dataLayer;
         global $validator;
 
-        //Set page title
-        $this->_f3->set('title', 'Create Account');
-
         //Load states into $f3
         $this->_f3->set("listStates", $dataLayer->getStates());
+
+        //Set the page title
+        $this->_f3->set("title", "Create Account");
 
         //Sticky Forms
         $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
@@ -67,7 +99,6 @@ class Controller
         $this->_f3->set("zip", isset($_POST['zip']) ? $_POST['zip'] : "");
 
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-
             //Validate email  !! CHECK DATABASE
             if($validator->validEmail($_POST['email'])){
                 $_SESSION['email'] = $_POST['email'];
@@ -101,18 +132,17 @@ class Controller
         echo $view->render('views/newAccount.html');
     }
 
-
     public function userDash(){
-        //Set page title
-        $this->_f3->set('title', 'User Dashboard');
+        //Set the page title
+        $this->_f3->set("title", "User Dashboard");
 
         $view = new Template();
         echo $view->render('views/userDash.html');
     }
 
     public function adminDash(){
-        //Set page title
-        $this->_f3->set('title', 'Admin Dashboard');
+        //Set the page title
+        $this->_f3->set("title", "Admin Dashboard");
 
         $view = new Template();
         echo $view->render('views/adminDash.html');

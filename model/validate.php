@@ -53,4 +53,14 @@ class Validate
         $patternEmail = '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$^';
         return preg_match($patternEmail, $email);
     }
+
+    /**
+     * Checks that a supplied password is not blank.
+     * @param $pass String - supplied password
+     * @return bool true if password is not empty, false otherwise
+     */
+    function validPass($pass)
+    {
+        return !empty($pass);
+    }
 }

@@ -1,5 +1,4 @@
 <include href="views/header.html"></include>
-
 <div class="container">
 
     <!--  Row  -->
@@ -14,13 +13,25 @@
                 <!--  Username  -->
                 <div class="form-group">
                     <label for="user">Username</label>
-                    <input type="text" class="form-control" id="user" name="user" placeholder="Enter username">
+                    <input type="text" class="form-control" id="user" name="email" placeholder="Enter email"
+                           value="{{@email}}">
+
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['email'])}}">
+                        <p class="text-danger">{{@errors['email']}}</p>
+                    </check>
                 </div>
 
                 <!--  Password  -->
                 <div class="form-group">
                     <label for="pass">Password</label>
-                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password"
+                           value="{{@pass}}">
+
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['pass'])}}">
+                        <p class="text-danger">{{@errors['pass']}}</p>
+                    </check>
                 </div>
 
 
@@ -37,5 +48,4 @@
         </div>
     </div>
 </div><!--END OF CONTAINER-->
-
 <include href="views/footer.html"></include>

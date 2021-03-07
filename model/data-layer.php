@@ -9,67 +9,66 @@ class DataLayer
     }
 
     //WORKING!!!!!!!!!!!!!!!!!!!
-    function checkLoginCred(){
-                //Query database
-        $sql = "SELECT firstname FROM account WHERE username = :user AND password = :pass";
+    function checkLoginCred($email, $pass){
+        //Query database
+        $sql = "SELECT firstname FROM account WHERE username = :email AND password = :pass";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //bind the parameter
-        $statement->bindParam(':user', $_POST['user'], PDO::PARAM_STR);
-        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':pass', $pass, PDO::PARAM_STR);
 
         //Process results
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        var_dump($result);
-
-        //RETURN BOOLEAN
+        //Return boolean
+        return !empty($result);
     }
 
 
-    function checkUsername($username){
+//    function checkUsername($email, $pass){
+//
+//        //Query database
+//        $sql = "SELECT firstname FROM account WHERE username = :email";
+//
+//        //prepare the statement
+//        $statement = $this->_dbh->prepare($sql);
+//
+//        //bind the parameter
+//        $statement->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
+//        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
+//
+//        //Process results
+//        $statement->execute();
+//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+//
+//        var_dump($result);
+//        //RETURN BOOLEAN
+//    }
 
-        //Query database
-        $sql = "SELECT firstname FROM account WHERE username = :user";
 
-        //prepare the statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //bind the parameter
-        $statement->bindParam(':user', $_POST['user'], PDO::PARAM_STR);
-        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
-
-        //Process results
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        var_dump($result);
-        //RETURN BOOLEAN
-    }
-
-
-
-    function newAccount()
-    {
-        //Query database
-        $sql = "INSERT INTO account (null, :user, :pass, :first, :last)";
-
-        //prepare the statement
-        $statement = $dbh->prepare($sql);
-
-        //bind the parameter
-        $statement->bindParam(':user', $_POST['user'], PDO::PARAM_STR);
-        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
-        $statement->bindParam(':first', $_POST['first'], PDO::PARAM_STR);
-        $statement->bindParam(':last', $_POST['last'], PDO::PARAM_STR);
-
-        //Process results
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
+//
+//    function newAccount()
+//    {
+//        //Query database
+//        $sql = "INSERT INTO account (null, :user, :pass, :first, :last)";
+//
+//        //prepare the statement
+//        $statement = $dbh->prepare($sql);
+//
+//        //bind the parameter
+//        $statement->bindParam(':user', $_POST['user'], PDO::PARAM_STR);
+//        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
+//        $statement->bindParam(':first', $_POST['first'], PDO::PARAM_STR);
+//        $statement->bindParam(':last', $_POST['last'], PDO::PARAM_STR);
+//
+//        //Process results
+//        $statement->execute();
+//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+//    }
 
     function getStates()
     {
