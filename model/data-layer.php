@@ -8,7 +8,7 @@ class DataLayer
         $this->_dbh = $dbh;
     }
 
-    //WORKING!!!!!!!!!!!!!!!!!!!
+
     function checkLoginCred($email, $pass){
         //Query database
         $sql = "SELECT firstname FROM account WHERE username = :email AND password = :pass";
@@ -29,25 +29,33 @@ class DataLayer
     }
 
 
-//    function checkUsername($email, $pass){
-//
-//        //Query database
-//        $sql = "SELECT firstname FROM account WHERE username = :email";
-//
-//        //prepare the statement
-//        $statement = $this->_dbh->prepare($sql);
-//
-//        //bind the parameter
-//        $statement->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
-//        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
-//
-//        //Process results
-//        $statement->execute();
-//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-//
-//        var_dump($result);
-//        //RETURN BOOLEAN
-//    }
+    function checkEmailCred($email){
+
+        //Query database
+        $sql = "SELECT firstname FROM account WHERE username = :email";
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind the parameter
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+        //Process results
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        //TESTING
+        if(empty($result)){
+            echo "No Match".var_dump($result);
+        }
+        else{
+            echo "Email already in use ".var_dump($result);
+        }
+
+
+        //RETURN BOOLEAN
+        return empty($result);
+    }
 
 
 //

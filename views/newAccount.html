@@ -29,13 +29,23 @@
                     <label for="pass">Password</label>
                     <input type="password" class="form-control" id="pass" name="pass"
                            placeholder="Password" value="{{@pass}}">
+                    <check if="{{isset(@errors['pass'])}}">
+                        <p class="text-danger">{{@errors['pass']}}</p>
+                    </check>
                 </div>
                 <!--  Confirm Password  -->
                 <div class="form-group col-md-6">
                     <label for="passConfirm">Confirm Password</label>
                     <input type="password" class="form-control" id="passConfirm" name="passConfirm"
-                           placeholder="Password" value="passConfirm">
+                           placeholder="Confirm password" value="{{@passConfirm}}">
+                    <check if="{{isset(@errors['passConfirm'])}}">
+                        <p class="text-danger">{{@errors['passConfirm']}}</p>
+                    </check>
                 </div>
+            </div>
+            <div class="form-group alert alert-primary text-center" role="alert">
+                <strong>Password must include:</strong> atleast 1 capital letter, 1 lowercase letter, 1 number,
+                1 special character ($!@#%&*\^), and be 8-32 characters in length.
             </div>
 
 

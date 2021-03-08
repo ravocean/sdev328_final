@@ -37,6 +37,7 @@ class Controller
         $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
         $this->_f3->set("pass", isset($_POST['pass']) ? $_POST['pass'] : "");
 
+        //If POST array is set
         if ($_SERVER['REQUEST_METHOD']=='POST') {
 
             //Validate email
@@ -98,17 +99,40 @@ class Controller
         $this->_f3->set("state", isset($_POST['state']) ? $_POST['state'] : "");
         $this->_f3->set("zip", isset($_POST['zip']) ? $_POST['zip'] : "");
 
+        //If POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            //Validate email  !! CHECK DATABASE
-            if($validator->validEmail($_POST['email'])){
-                $_SESSION['email'] = $_POST['email'];
-                $dataLayer->checkUsername($_SESSION['email']);
+            $email = $_POST['email'];
+            $pass = $_POST['pass'];
+            $passConfirm = $_POST['passConfirm'];
+
+
+            //Validate email
+            if($validator->validEmail($email)){
+                //If email is not in the account table add to SESSION, otherwise set error message
+                if($dataLayer->checkEmailCred($email)){
+                    $_SESSION['email'] = $email;
+                }
+                else{
+                    $this->_f3->set("errors['email']", 'Email is already in use.');
+                }
             }
             else{
                 $this->_f3->set("errors['email']", 'Please enter a valid email');
             }
 
-            //Validate password !! CHECK DATABASE
+            //Validate password
+            if($validator->validPass($pass)){
+                //If passwords match, add to SESSION, otherwise set error message
+                if($pass === $passConfirm){
+                    $_SESSION = $pass;
+                }
+                else{
+                    $this->_f3->set("errors['passConfirm']", 'The passwords do not match');
+                }
+            }
+            else{
+                $this->_f3->set("errors['pass']", 'Please enter a valid password');
+            }
 
             //Validate First and Last name
 

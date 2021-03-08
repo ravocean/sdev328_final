@@ -61,6 +61,9 @@ class Validate
      */
     function validPass($pass)
     {
-        return !empty($pass);
+        $patterPass = '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$!@#%&*\^]).{8,32}$/';
+        return preg_match($patterPass, $pass);
     }
+
+
 }
