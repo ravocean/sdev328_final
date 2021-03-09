@@ -43,7 +43,6 @@ class Controller
             //Validate email
             if($validator->validEmail($_POST['email'])){
                 $_SESSION['email'] = $_POST['email'];
-
             }
             else{
                 $this->_f3->set("errors['email']", 'Please enter a valid email');
@@ -62,7 +61,15 @@ class Controller
 
                 //Check account database for a match
                 if($dataLayer->checkLoginCred($_SESSION['email'], $_SESSION['pass'])){
-                    echo "USER EXISTS";
+
+                    //TESTING - return accountID to use as session ID
+                    $result = $dataLayer->checkLoginCred($_SESSION['email'], $_SESSION['pass']);
+                    echo $result[0]['accountID'];
+
+                    //TODO: Query database for account info, put in account object
+
+                    //TODO: Implement Session ID Before Reroute
+                    $this->_f3->reroute('userDash');
                 }
                 //If email and password pair do not exist in the database, display error
                 else{
@@ -80,9 +87,7 @@ class Controller
     function newAccount(){
         global $dataLayer;
         global $validator;
-
-        //Load states into $f3
-        $this->_f3->set("listStates", $dataLayer->getStates());
+        global $account;
 
         //Set the page title
         $this->_f3->set("title", "Create Account");
@@ -93,64 +98,62 @@ class Controller
         $this->_f3->set("passConfirm", isset($_POST['passConfirm']) ? $_POST['passConfirm'] : "");
         $this->_f3->set("fName", isset($_POST['fName']) ? $_POST['fName'] : "");
         $this->_f3->set("lName", isset($_POST['lName']) ? $_POST['lName'] : "");
-        $this->_f3->set("address1", isset($_POST['address1']) ? $_POST['address1'] : "");
-        $this->_f3->set("address2", isset($_POST['address2']) ? $_POST['address2'] : "");
-        $this->_f3->set("city", isset($_POST['city']) ? $_POST['city'] : "");
-        $this->_f3->set("state", isset($_POST['state']) ? $_POST['state'] : "");
-        $this->_f3->set("zip", isset($_POST['zip']) ? $_POST['zip'] : "");
 
         //If POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $email = $_POST['email'];
-            $pass = $_POST['pass'];
-            $passConfirm = $_POST['passConfirm'];
 
+            //Validate First Name, if valid add to account
+            $account->setFirstname($validator->validName($_POST['fName']) ?
+                $_POST['fName'] : $this->_f3->set("errors['fName']", 'Please enter your first name'));
+
+            //Validate Last Name, if valid add to account
+            $account->setLastname($validator->validName($_POST['lName']) ?
+                $_POST['lName'] : $this->_f3->set("errors['lName']", 'Please enter your last name'));
 
             //Validate email
-            if($validator->validEmail($email)){
-                //If email is not in the account table add to SESSION, otherwise set error message
-                if($dataLayer->checkEmailCred($email)){
-                    $_SESSION['email'] = $email;
-                }
-                else{
-                    $this->_f3->set("errors['email']", 'Email is already in use.');
-                }
+            if($validator->validEmail($_POST['email'])){
+
+                //If email is not in the account table add to account, otherwise set error message
+                $account->setEmail($dataLayer->checkEmailCred($_POST['email']) ?
+                    $_POST['email'] : $this->_f3->set("errors['email']", 'Email is already in use.'));
             }
+            //Email is not valid, set error message
             else{
                 $this->_f3->set("errors['email']", 'Please enter a valid email');
             }
 
             //Validate password
-            if($validator->validPass($pass)){
-                //If passwords match, add to SESSION, otherwise set error message
-                if($pass === $passConfirm){
-                    $_SESSION = $pass;
-                }
-                else{
-                    $this->_f3->set("errors['passConfirm']", 'The passwords do not match');
-                }
+            if($validator->validPass($_POST['passConfirm'])){
+
+                //If passwords match, add to account, otherwise set error message
+                $account->setPass($_POST['pass'] === $_POST['passConfirm'] ?
+                    $_POST['pass'] : $this->_f3->set("errors['passConfirm']", 'The passwords do not match'));
             }
+            //Password is not valid, set error message
             else{
                 $this->_f3->set("errors['pass']", 'Please enter a valid password');
             }
 
-            //Validate First and Last name
-
-            //Validate Address 1 and 2
-
-            //Validate City
-
-            //Validate State
-
-            //Validate Zip
-
-            //IF ALL INFORMATION IS CORRECT, CREATE ACCOUNT AND CUSTOMER OBJECTS
-
             //Reroute
+            if(empty($this->_f3->get('errors'))){
+
+                //TODO: Verify account save executed properly, display message appropriately
+                //Save account to database
+                $dataLayer->saveAccount($account);
+
+                //TODO: Implement Session Before Reroute
+
+                //Save account to $f3
+                $this->_f3->set('account', $account);
+
+                //TODO: Either reroute to login or dashboard
+
+                //Reroute
+                $this->_f3->reroute('login');
+            }
         }
 
 //        var_dump($_POST);
-
         //Render the page
         $view = new Template();
         echo $view->render('views/newAccount.html');

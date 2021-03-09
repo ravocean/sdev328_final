@@ -2,41 +2,41 @@
 
 class Account{
 
-    private $_username;
-    private $_password;
+    private $_email;
+    private $_pass;
     private $_firstname;
     private $_lastname;
 
     /**
      * @return mixed
      */
-    public function getUsername()
+    public function getEmail()
     {
-        return $this->_username;
+        return $this->_email;
     }
 
     /**
-     * @param mixed $username
+     * @param mixed $email
      */
-    public function setUsername($username)
+    public function setEmail($email)
     {
-        $this->_username = $username;
+        $this->_email = $email;
     }
 
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getPass()
     {
-        return $this->_password;
+        return $this->_pass;
     }
 
     /**
-     * @param mixed $password
+     * @param mixed $pass
      */
-    public function setPassword($password)
+    public function setPass($pass)
     {
-        $this->_password = $password;
+        $this->_pass = $pass;
     }
 
     /**

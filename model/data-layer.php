@@ -8,10 +8,9 @@ class DataLayer
         $this->_dbh = $dbh;
     }
 
-
     function checkLoginCred($email, $pass){
         //Query database
-        $sql = "SELECT firstname FROM account WHERE username = :email AND password = :pass";
+        $sql = "SELECT accountID FROM account WHERE username = :email AND password = :pass";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -28,7 +27,6 @@ class DataLayer
         return !empty($result);
     }
 
-
     function checkEmailCred($email){
 
         //Query database
@@ -44,39 +42,30 @@ class DataLayer
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        //TESTING
-        if(empty($result)){
-            echo "No Match".var_dump($result);
-        }
-        else{
-            echo "Email already in use ".var_dump($result);
-        }
-
-
         //RETURN BOOLEAN
         return empty($result);
     }
 
+    function saveAccount($account){
+        //Build query
+        $sql = "INSERT INTO account VALUES (null, :email, :pass, :first, :last)";
 
-//
-//    function newAccount()
-//    {
-//        //Query database
-//        $sql = "INSERT INTO account (null, :user, :pass, :first, :last)";
-//
-//        //prepare the statement
-//        $statement = $dbh->prepare($sql);
-//
-//        //bind the parameter
-//        $statement->bindParam(':user', $_POST['user'], PDO::PARAM_STR);
-//        $statement->bindParam(':pass', $_POST['pass'], PDO::PARAM_STR);
-//        $statement->bindParam(':first', $_POST['first'], PDO::PARAM_STR);
-//        $statement->bindParam(':last', $_POST['last'], PDO::PARAM_STR);
-//
-//        //Process results
-//        $statement->execute();
-//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-//    }
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind the parameter
+        $statement->bindParam(':email', $account->getEmail(), PDO::PARAM_STR);
+        $statement->bindParam(':pass', $account->getPass(), PDO::PARAM_STR);
+        $statement->bindParam(':first', $account->getFirstname(), PDO::PARAM_STR);
+        $statement->bindParam(':last', $account->getLastname(), PDO::PARAM_STR);
+
+        //Process results
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        //Return boolean
+        return $result;
+    }
 
     function getStates()
     {
@@ -90,5 +79,5 @@ class DataLayer
             'Washington', 'West Virginia', 'Wisconsin', 'Wyoming');
     }
 
+    //TODO: add function to create and return account object using database information
 }
-
