@@ -87,7 +87,6 @@ class Controller
     function newAccount(){
         global $dataLayer;
         global $validator;
-        global $account;
 
         //Set the page title
         $this->_f3->set("title", "Create Account");
@@ -101,21 +100,35 @@ class Controller
 
         //If POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
+            
+            //Instantiate Account object to save user data to.
+            $account = new Account();
 
             //Validate First Name, if valid add to account
-            $account->setFirstname($validator->validName($_POST['fName']) ?
-                $_POST['fName'] : $this->_f3->set("errors['fName']", 'Please enter your first name'));
+            if($validator->validName($_POST['fName'])){
+                $account->setFirstname($_POST['fName']);
+            }
+            else{
+                $this->_f3->set("errors['fName']", 'Please enter your first name');
+            }
 
             //Validate Last Name, if valid add to account
-            $account->setLastname($validator->validName($_POST['lName']) ?
-                $_POST['lName'] : $this->_f3->set("errors['lName']", 'Please enter your last name'));
+            if($validator->validName($_POST['lName'])){
+                $account->setLastname($_POST['lName']);
+            }
+            else{
+                $this->_f3->set("errors['lName']", 'Please enter your last name');
+            }
 
             //Validate email
             if($validator->validEmail($_POST['email'])){
-
                 //If email is not in the account table add to account, otherwise set error message
-                $account->setEmail($dataLayer->checkEmailCred($_POST['email']) ?
-                    $_POST['email'] : $this->_f3->set("errors['email']", 'Email is already in use.'));
+                if($dataLayer->checkEmailCred($_POST['email'])){
+                    $account->setEmail($_POST['email']);
+                }
+                else{
+                    $this->_f3->set("errors['email']", 'Email is already in use.');
+                }
             }
             //Email is not valid, set error message
             else{
@@ -123,11 +136,14 @@ class Controller
             }
 
             //Validate password
-            if($validator->validPass($_POST['passConfirm'])){
-
+            if($validator->validPass($_POST['pass'])){
                 //If passwords match, add to account, otherwise set error message
-                $account->setPass($_POST['pass'] === $_POST['passConfirm'] ?
-                    $_POST['pass'] : $this->_f3->set("errors['passConfirm']", 'The passwords do not match'));
+                if($_POST['pass'] === $_POST['passConfirm']){
+                    $account->setPass($_POST['pass']);
+                }
+                else{
+                    $this->_f3->set("errors['passConfirm']", 'The passwords do not match');
+                }
             }
             //Password is not valid, set error message
             else{
