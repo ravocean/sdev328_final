@@ -8,7 +8,7 @@ class DataLayer
         $this->_dbh = $dbh;
     }
 
-    function checkLoginCred($email, $pass){
+    function getLoginCred($email, $pass){
         //Query database
         $sql = "SELECT accountID FROM account WHERE username = :email AND password = :pass";
 
@@ -24,13 +24,13 @@ class DataLayer
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         //Return boolean
-        return !empty($result);
+        return $result;
     }
 
-    function checkEmailCred($email){
+    function getEmailCred($email){
 
         //Query database
-        $sql = "SELECT firstname FROM account WHERE username = :email";
+        $sql = "SELECT accountID FROM account WHERE username = :email";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -79,5 +79,4 @@ class DataLayer
             'Washington', 'West Virginia', 'Wisconsin', 'Wyoming');
     }
 
-    //TODO: add function to create and return account object using database information
 }

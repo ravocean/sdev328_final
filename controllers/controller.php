@@ -59,16 +59,20 @@ class Controller
             //If both email and password are valid
             if(empty($this->_f3->get('errors'))){
 
-                //Check account database for a match
-                if($dataLayer->checkLoginCred($_SESSION['email'], $_SESSION['pass'])){
+                //Query database for account ID matching provided email and password, save result
+                $accountID = $dataLayer->getLoginCred($_SESSION['email'], $_SESSION['pass']);
 
-                    //TESTING - return accountID to use as session ID
-                    $result = $dataLayer->checkLoginCred($_SESSION['email'], $_SESSION['pass']);
-                    echo $result[0]['accountID'];
+                //If result is not empty
+                if(!empty($accountID)){
 
-                    //TODO: Query database for account info, put in account object
+                    //Save result to SESSION to indicate user is logged in
+                    $_SESSION['accountID'] = $accountID[0]['accountID'];
 
-                    //TODO: Implement Session ID Before Reroute
+                    echo $_SESSION['accountID'];
+
+                    //TODO: check if user or admin logged in, redirect accordingly
+
+                    //Reroute to dashboard
                     $this->_f3->reroute('userDash');
                 }
                 //If email and password pair do not exist in the database, display error
@@ -100,7 +104,7 @@ class Controller
 
         //If POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            
+
             //Instantiate Account object to save user data to.
             $account = new Account();
 
@@ -123,7 +127,7 @@ class Controller
             //Validate email
             if($validator->validEmail($_POST['email'])){
                 //If email is not in the account table add to account, otherwise set error message
-                if($dataLayer->checkEmailCred($_POST['email'])){
+                if($dataLayer->getEmailCred($_POST['email'])){
                     $account->setEmail($_POST['email']);
                 }
                 else{
@@ -169,7 +173,6 @@ class Controller
             }
         }
 
-//        var_dump($_POST);
         //Render the page
         $view = new Template();
         echo $view->render('views/newAccount.html');
@@ -178,6 +181,11 @@ class Controller
     public function userDash(){
         //Set the page title
         $this->_f3->set("title", "User Dashboard");
+
+        //Testing
+        echo isset($_SESSION['accountID']) && !Empty($_SESSION['accountID']) ?
+            $_SESSION['accountID'] : "Not Logged In";
+
 
         $view = new Template();
         echo $view->render('views/userDash.html');
