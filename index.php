@@ -20,7 +20,6 @@ $f3->set('DEBUG', 3);
 $controller = new Controller($f3);
 $dataLayer = new DataLayer($dbh);
 $validator = new Validate();
-$account = new Account();
 
 //Default Route
 $f3->route('GET /', function() {
@@ -51,12 +50,6 @@ $f3->route('GET|POST /admindash', function() {
     global $controller;
     $controller->adminDash();
 });
-
-
-
-
-
-
 
 //Run fat free
 $f3->run();
