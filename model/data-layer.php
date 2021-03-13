@@ -10,7 +10,7 @@ class DataLayer
 
     function getLoginCred($email, $pass){
         //Query database
-        $sql = "SELECT accountID FROM account WHERE username = :email AND password = :pass";
+        $sql = "SELECT * FROM account WHERE username = :email AND password = :pass";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -78,5 +78,4 @@ class DataLayer
             'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
             'Washington', 'West Virginia', 'Wisconsin', 'Wyoming');
     }
-
 }

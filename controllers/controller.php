@@ -32,6 +32,13 @@ class Controller
         global $dataLayer;
         global $validator;
 
+        //If a user is already logged in, redirect to dashboard
+        if(isset($_SESSION['user'])){
+
+            //TODO: check if user or admin logged in, redirect accordingly
+            $this->_f3->reroute('userDash');
+        }
+
         //Set the page title
         $this->_f3->set("title", "Login");
         $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
@@ -53,7 +60,7 @@ class Controller
                 $_SESSION['pass'] = $_POST['pass'];
             }
             else{
-                $this->_f3->set("errors['pass']", 'Please enter a password');
+                $this->_f3->set("errors['pass']", 'Please enter a valid password');
             }
 
             //If both email and password are valid
@@ -66,9 +73,7 @@ class Controller
                 if(!empty($accountID)){
 
                     //Save result to SESSION to indicate user is logged in
-                    $_SESSION['accountID'] = $accountID[0]['accountID'];
-
-                    echo $_SESSION['accountID'];
+                    $_SESSION['user'] = $accountID[0];
 
                     //TODO: check if user or admin logged in, redirect accordingly
 
@@ -88,7 +93,13 @@ class Controller
         echo $view->render('views/login.html');
     }
 
+    function logout(){
+        session_destroy();
+        $this->_f3->reroute('login');
+    }
+
     function newAccount(){
+
         global $dataLayer;
         global $validator;
 
@@ -181,11 +192,6 @@ class Controller
     public function userDash(){
         //Set the page title
         $this->_f3->set("title", "User Dashboard");
-
-        //Testing
-        echo isset($_SESSION['accountID']) && !Empty($_SESSION['accountID']) ?
-            $_SESSION['accountID'] : "Not Logged In";
-
 
         $view = new Template();
         echo $view->render('views/userDash.html');
