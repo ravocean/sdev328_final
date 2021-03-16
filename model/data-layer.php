@@ -10,7 +10,7 @@ class DataLayer
 
     function checkLoginCreds($email, $pass){
         //Query database
-        $sql = "SELECT accountID, firstname, lastname, username, role FROM account WHERE username = :email AND password = :pass";
+        $sql = "SELECT accountID, firstname, lastname, username, role FROM account WHERE username = :email AND password = sha1(:pass)";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -90,7 +90,7 @@ class DataLayer
 
     function saveAccount($account){
         //Build query
-        $sql = "INSERT INTO account VALUES (null, :email, :pass, :first, :last, 0)";
+        $sql = "INSERT INTO account VALUES (null, :email, sha1(:pass), :first, :last, 0)";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
