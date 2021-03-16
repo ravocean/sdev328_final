@@ -33,6 +33,12 @@ $f3->route('GET|POST /login', function() {
     $controller->login();
 });
 
+//Route to Password Recovery
+$f3->route('GET|POST /accountRecovery', function() {
+    global $controller;
+    $controller->accountRecovery();
+});
+
 //Route to Account Creation
 $f3->route('GET|POST /newAccount', function() {
     global $controller;
