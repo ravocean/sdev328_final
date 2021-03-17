@@ -29,7 +29,7 @@
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Everything is Considered</h5>
                                 <p>When maintaining your car, we check everything and make sure we take care of each issue.
-                                Everything we do is recorded for your convenience.</p>
+                                    Everything we do is recorded for your convenience.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
@@ -37,7 +37,7 @@
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Check Engine Light Diagnostics & Repair</h5>
                                 <p>When the check engine light turns on, there's a tendency to worry that disaster is near.
-                                Our diagnostic tools will identify any issues with the vehicle and give clear instructions for repairing</p>
+                                    Our diagnostic tools will identify any issues with the vehicle and give clear instructions for repairing</p>
                             </div>
                         </div>
                         <div class="carousel-item">
@@ -45,7 +45,7 @@
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Team of Pros</h5>
                                 <p>Our team members are highly trained professionals with high experience and excellent skills.
-                                Each vehicle is fully inspected in and out.</p>
+                                    Each vehicle is fully inspected in and out.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
@@ -53,7 +53,7 @@
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Individual Approach</h5>
                                 <p>We work closely with all of our customers. We provide a full report for everything that's done
-                                on your vehicle.</p>
+                                    on your vehicle.</p>
                             </div>
                         </div>
                     </div>
@@ -87,9 +87,9 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <p>South Garage is proud to serve the communities of Seattle – Tacoma area with a full range of auto repair services.
-                            A trained auto mechanic is worth their weight in gold, and we have been delighting customers with ours since our very
-                            first year of business. Our auto repair technicians complete 40 hours of additional training every year, making them
-                            the leading auto mechanics in Pacific Northwest.
+                                A trained auto mechanic is worth their weight in gold, and we have been delighting customers with ours since our very
+                                first year of business. Our auto repair technicians complete 40 hours of additional training every year, making them
+                                the leading auto mechanics in Pacific Northwest.
                             </p>
                         </div>
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -141,53 +141,36 @@
         <hr class="style13"> <!--Line-->
 
         <!--Table-->
-        <div class="row mt-5">
-            <h5 class="text-center">Your Service History</h5>
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Vehicle</th>
-                            <th scope="col">Service</th>
-                            <th scope="col">Status</th>
+        <div class="table-responsive">
+            <table id="member-table" class="table">
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>2012 Toyota Camry</td>
-                            <td>Oil Change</td>
-                            <td>Being Processed</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>2015 BMW 335i</td>
-                            <td>Head Gasket</td>
-                            <td>Being Processed</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mike</td>
-                            <td>Cruz</td>
-                            <td>2005 Mazda 6</td>
-                            <td>Tire Change</td>
-                            <td>Ready</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <!-- Table Head -->
+                <thead>
+                <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Make</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Miles</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Current Status</th>
+                </tr>
+                </thead>
 
-        </div><!--Table-->
+                <!-- Table Body -->
+                <tbody>
+                <repeat group="{{@results}}" value="{{@result}}">
+                    <tr>
+                        <td>{{@result.year}}</td>
+                        <td>{{@result.make}}</td>
+                        <td>{{@result.model}}</td>
+                        <td>{{@result.mileage}}</td>
+                        <td>{{@result.maintenance}}</td>
+                        <td>{{@result.status}}</td>
+                    </tr>
+                </repeat>
+                </tbody>
+            </table>
+        </div><!-- End of Table -->
 
     </div>
 </section>
