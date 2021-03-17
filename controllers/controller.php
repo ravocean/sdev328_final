@@ -32,13 +32,6 @@ class Controller
         global $dataLayer;
         global $validator;
 
-        //If a user is already logged in, redirect to dashboard
-        if(isset($_SESSION['user'])){
-
-            //TODO: check if user or admin logged in, redirect accordingly
-            $this->_f3->reroute('userDash');
-        }
-
         //Set the page title
         $this->_f3->set("title", "Login");
         $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
@@ -67,24 +60,29 @@ class Controller
             if(empty($this->_f3->get('errors'))){
 
                 //Query database for account ID matching provided email and password, save result
-                $accountID = $dataLayer->getLoginCred($_SESSION['email'], $_SESSION['pass']);
+                $accountID = $dataLayer->checkLoginCreds($_SESSION['email'], $_SESSION['pass']);
 
                 //If result is not empty
                 if(!empty($accountID)){
 
                     //Save result to SESSION to indicate user is logged in
                     $_SESSION['user'] = $accountID[0];
-
-                    //TODO: check if user or admin logged in, redirect accordingly
-
-                    //Reroute to dashboard
-                    $this->_f3->reroute('userDash');
                 }
                 //If email and password pair do not exist in the database, display error
                 else{
                     $this->_f3->set("errors['email']", 'The email or password you entered isn\'t 
                     connected to an account.');
                 }
+            }
+        }
+
+        //If a user is already logged in, redirect to the appropriate dashboard
+        if(isset($_SESSION['user'])){
+            if($_SESSION['user']['role'] == 0){
+                $this->_f3->reroute('userDash');
+            }
+            else{
+                $this->_f3->reroute('adminDash');
             }
         }
 
@@ -95,6 +93,7 @@ class Controller
 
     function logout(){
         session_destroy();
+        $_SESSION = array();
         $this->_f3->reroute('login');
     }
 
@@ -121,25 +120,25 @@ class Controller
 
             //Validate First Name, if valid add to account
             if($validator->validName($_POST['fName'])){
-                $account->setFirstname($_POST['fName']);
+                $account->setFirstname(ucfirst(strtolower($_POST['fName'])));
             }
             else{
-                $this->_f3->set("errors['fName']", 'Please enter your first name');
+                $this->_f3->set("errors['fName']", 'Please enter a valid first name');
             }
 
             //Validate Last Name, if valid add to account
             if($validator->validName($_POST['lName'])){
-                $account->setLastname($_POST['lName']);
+                $account->setLastname(ucfirst(strtolower($_POST['lName'])));
             }
             else{
-                $this->_f3->set("errors['lName']", 'Please enter your last name');
+                $this->_f3->set("errors['lName']", 'Please enter a valid last name');
             }
 
             //Validate email
             if($validator->validEmail($_POST['email'])){
                 //If email is not in the account table add to account, otherwise set error message
-                if($dataLayer->getEmailCred($_POST['email'])){
-                    $account->setEmail($_POST['email']);
+                if(empty($dataLayer->checkEmailExists($_POST['email']))){
+                    $account->setEmail(strtolower($_POST['email']));
                 }
                 else{
                     $this->_f3->set("errors['email']", 'Email is already in use.');
@@ -172,12 +171,8 @@ class Controller
                 //Save account to database
                 $dataLayer->saveAccount($account);
 
-                //TODO: Implement Session Before Reroute
-
                 //Save account to $f3
                 $this->_f3->set('account', $account);
-
-                //TODO: Either reroute to login or dashboard
 
                 //Reroute
                 $this->_f3->reroute('login');
@@ -190,18 +185,72 @@ class Controller
     }
 
     public function userDash(){
+        //Reroute if not a user account
+        if($_SESSION['user']['role'] != 0){
+            $this->_f3->reroute('/');
+        }
+
         //Set the page title
         $this->_f3->set("title", "User Dashboard");
+
+        global $dataLayer;
+
+        //Get user vehicles from database, save to f3 hive.
+        $this->_f3->set('results', $dataLayer->getUserVehicles($_SESSION['user']));
 
         $view = new Template();
         echo $view->render('views/userDash.html');
     }
 
     public function adminDash(){
+        //Reroute if not a admin account
+        if($_SESSION['user']['role'] != 1){
+            $this->_f3->reroute('/');
+        }
+
         //Set the page title
         $this->_f3->set("title", "Admin Dashboard");
 
+        global $dataLayer;
+
+        //Get user vehicles from database, save to f3 hive.
+        $this->_f3->set('results', $dataLayer->getOpenServiceTasks());
+
         $view = new Template();
         echo $view->render('views/adminDash.html');
+    }
+
+    public function accountRecovery(){
+        global $validator;
+        global $dataLayer;
+
+        //Set the page title
+        $this->_f3->set("title", "Account Recovery");
+        //Sticky Forms
+        $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
+
+        //If POST array is set
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            //Validate email
+            if($validator->validEmail($_POST['email'])){
+
+                //Display message that the email has been sent if account exists
+                $this->_f3->set("recovery", 'If an account is associated with this email address, an email will be
+                sent containing further instructions on the recovery process.');
+
+                //If account exists, send recovery email
+                if(!empty($dataLayer->checkEmailExists($_POST['email']))){
+                    $dataLayer->recoverAccount($_POST['email']);
+                }
+            }
+            //Email is not valid, set error message
+            else{
+                $this->_f3->set("errors['email']", 'Please enter a valid email');
+            }
+        }
+
+        $view = new Template();
+        echo $view->render('views/accountRecovery.html');
     }
 }
