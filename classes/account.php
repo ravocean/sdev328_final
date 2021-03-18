@@ -1,13 +1,39 @@
 <?php
-
+/*
+ * Desc:    Class Account creates an account object used to store user information during the account
+ *          creation process for the SouthGarage App.
+ * Date:    3/1/2021
+ * File:    account.php
+ * Auth:    Ryan Rivera & Husrav Khomidov
+ */
 class Account{
 
     private $_email;
     private $_pass;
     private $_firstname;
     private $_lastname;
+    private $_role;
 
     /**
+     * This functions returns the account's role
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->_role;
+    }
+
+    /**
+     * This function sets the account's role
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->_role = $role;
+    }
+
+    /**
+     * This function gets the account's email
      * @return mixed
      */
     public function getEmail()
@@ -16,6 +42,7 @@ class Account{
     }
 
     /**
+     * This function sets the account's email
      * @param mixed $email
      */
     public function setEmail($email)
@@ -24,6 +51,7 @@ class Account{
     }
 
     /**
+     * This function gets the account's pass
      * @return mixed
      */
     public function getPass()
@@ -32,6 +60,7 @@ class Account{
     }
 
     /**
+     * This function sets the account's pass
      * @param mixed $pass
      */
     public function setPass($pass)
@@ -40,6 +69,7 @@ class Account{
     }
 
     /**
+     * This function gets the account's firstname
      * @return mixed
      */
     public function getFirstname()
@@ -48,6 +78,7 @@ class Account{
     }
 
     /**
+     * This function sets the account's firstname
      * @param mixed $firstname
      */
     public function setFirstname($firstname)
@@ -56,6 +87,7 @@ class Account{
     }
 
     /**
+     * This function gets the account's lastname
      * @return mixed
      */
     public function getLastname()
@@ -64,6 +96,7 @@ class Account{
     }
 
     /**
+     * This function sets the account's lastname
      * @param mixed $lastname
      */
     public function setLastname($lastname)

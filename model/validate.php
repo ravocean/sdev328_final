@@ -1,11 +1,10 @@
 <?php
 /*
- * Desc:    Class Validate provides functions to validate information for
- * Date:
+ * Desc:    Class DataLayer provides validation functions for the SouthGarage App.
+ * Date:    3/1/21
  * File:    validate.php
- * Auth:    Ryan Rivera
+ * Auth:    Ryan Rivera & Husrav Khomidov
  */
-
 class Validate
 {
     /**

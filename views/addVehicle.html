@@ -1,0 +1,75 @@
+<include href="views/header.html"></include>
+<div class="container">
+
+    <!--  Row  -->
+    <div class="row ">
+
+        <div class="col-10 col-lg-6 col-md-8 col-sm-10 mx-auto p-0 mt-5 mb-5">
+            <form class="border rounded p-3" method="post" action="#">
+
+                <!--  Header  -->
+                <h3 class="text-center mb-3">Schedule a Service</h3>
+                <h5 class="text-center mb-3">Vehicle Information</h5>
+
+                <!--  Make  -->
+                <div class="form-group">
+                    <label>Make</label>
+                    <input type="text" class="form-control" name="vMake" placeholder="..." value="{{@vMake}}">
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['vMake'])}}">
+                        <p class="text-danger">{{@errors['vMake']}}</p>
+                    </check>
+                </div>
+
+                <!--  Model  -->
+                <div class="form-group">
+                    <label>Model</label>
+                    <input type="text" class="form-control" name="vModel" placeholder="..." value="{{@vModel}}">
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['vModel'])}}">
+                        <p class="text-danger">{{@errors['vModel']}}</p>
+                    </check>
+                </div>
+
+                <!--  Year  -->
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" class="form-control" name="vYear" placeholder="..." value="{{@vYear}}">
+
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['vYear'])}}">
+                        <p class="text-danger">{{@errors['vYear']}}</p>
+                    </check>
+                </div>
+
+                <!--  Mileage  -->
+                <div class="form-group">
+                    <label>Mileage</label>
+                    <input type="text" class="form-control" name="vMileage" placeholder="..." value="{{@vMileage}}">
+
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['vMileage'])}}">
+                        <p class="text-danger">{{@errors['vMileage']}}</p>
+                    </check>
+                </div>
+
+                <!--  Service  -->
+                <div class="form-group">
+                    <label>Service</label>
+                    <input type="text" class="form-control" name="vService" placeholder="..." value="{{@vService}}">
+
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['vService'])}}">
+                        <p class="text-danger">{{@errors['vService']}}</p>
+                    </check>
+                </div>
+
+                <!--  Submit Button  -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary m-3">Schedule Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!--END OF CONTAINER-->
+<include href="views/footer.html"></include>
