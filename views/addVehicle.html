@@ -16,8 +16,8 @@
                     <label>Make</label>
                     <input type="text" class="form-control" name="vMake" placeholder="..." value="{{@vMake}}">
                     <!--  Error Message  -->
-                    <check if="{{isset(@errors['make'])}}">
-                        <p class="text-danger">{{@errors['make']}}</p>
+                    <check if="{{isset(@errors['vMake'])}}">
+                        <p class="text-danger">{{@errors['vMake']}}</p>
                     </check>
                 </div>
 
@@ -33,12 +33,23 @@
 
                 <!--  Year  -->
                 <div class="form-group">
-                    <label>Model</label>
+                    <label>Year</label>
                     <input type="text" class="form-control" name="vYear" placeholder="..." value="{{@vYear}}">
 
                     <!--  Error Message  -->
                     <check if="{{isset(@errors['vYear'])}}">
                         <p class="text-danger">{{@errors['vYear']}}</p>
+                    </check>
+                </div>
+
+                <!--  Mileage  -->
+                <div class="form-group">
+                    <label>Mileage</label>
+                    <input type="text" class="form-control" name="vMileage" placeholder="..." value="{{@vMileage}}">
+
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['vMileage'])}}">
+                        <p class="text-danger">{{@errors['vMileage']}}</p>
                     </check>
                 </div>
 

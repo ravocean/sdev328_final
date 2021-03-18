@@ -136,4 +136,30 @@ class DataLayer
 
         mail($to, $subject, $body, $headers);
     }
+
+    function addVehicle($vehicle){
+
+        var_dump($vehicle);
+
+        //Build query
+        $sql = "INSERT INTO vehicle VALUES (null, :accountID, :year, :make, :model, :mileage, :service, :status)";
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind the parameter
+        $statement->bindParam(':accountID', $vehicle->getAccountID(), PDO::PARAM_STR);
+        $statement->bindParam(':make', $vehicle->getMake(), PDO::PARAM_STR);
+        $statement->bindParam(':model', $vehicle->getModel(), PDO::PARAM_STR);
+        $statement->bindParam(':year', $vehicle->getYear(), PDO::PARAM_STR);
+        $statement->bindParam(':mileage', $vehicle->getMileage(), PDO::PARAM_STR);
+        $statement->bindParam(':service', $vehicle->getService(), PDO::PARAM_STR);
+        $statement->bindParam(':status', $vehicle->getStatus(), PDO::PARAM_STR);
+
+        //Process results
+        $statement->execute();
+
+        //Return boolean
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

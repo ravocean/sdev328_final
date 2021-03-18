@@ -7,7 +7,7 @@ class Vehicle{
     private $_make;
     private $_model;
     private $_mileage;
-    private $_maintenance;
+    private $_service;
     private $_status;
 
     /**
@@ -93,17 +93,17 @@ class Vehicle{
     /**
      * @return mixed
      */
-    public function getMaintenance()
+    public function getService()
     {
-        return $this->_maintenance;
+        return $this->_service;
     }
 
     /**
      * @param mixed $maintenance
      */
-    public function setMaintenance($maintenance)
+    public function setService($maintenance)
     {
-        $this->_maintenance = $maintenance;
+        $this->_service = $maintenance;
     }
 
     /**
