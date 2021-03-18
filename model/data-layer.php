@@ -138,7 +138,7 @@ class DataLayer
         mail($to, $subject, $body, $headers);
     }
 
-    function addVehicle($vehicle){
+    function saveVehicle($vehicle){
 
         var_dump($vehicle);
 

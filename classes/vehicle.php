@@ -1,5 +1,11 @@
 <?php
-
+/*
+ * Desc:    Class Vehicle creates a vehicle object used to store vehicle information while scheduling
+ *          a service in the SouthGarage App.
+ * Date:    3/17/2021
+ * File:    vehicle.php
+ * Auth:    Ryan Rivera & Husrav Khomidov
+ */
 class Vehicle{
 
     private $_accountID;
@@ -11,6 +17,7 @@ class Vehicle{
     private $_status;
 
     /**
+     * This function gets the vehicle owner's accountID
      * @return mixed
      */
     public function getAccountID()
@@ -19,6 +26,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle owner's accountID
      * @param mixed $accountID
      */
     public function setAccountID($accountID)
@@ -27,6 +35,7 @@ class Vehicle{
     }
 
     /**
+     * This function gets the vehicle's year
      * @return mixed
      */
     public function getYear()
@@ -35,6 +44,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle's year
      * @param mixed $year
      */
     public function setYear($year)
@@ -43,6 +53,7 @@ class Vehicle{
     }
 
     /**
+     * This function gets the vehicle's make
      * @return mixed
      */
     public function getMake()
@@ -51,6 +62,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle's make
      * @param mixed $make
      */
     public function setMake($make)
@@ -59,6 +71,7 @@ class Vehicle{
     }
 
     /**
+     * This function gets the vehicle's model
      * @return mixed
      */
     public function getModel()
@@ -67,6 +80,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle's model
      * @param mixed $model
      */
     public function setModel($model)
@@ -75,6 +89,7 @@ class Vehicle{
     }
 
     /**
+     * This function gets the vehicle's mileage
      * @return mixed
      */
     public function getMileage()
@@ -83,6 +98,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle's mileage
      * @param mixed $mileage
      */
     public function setMileage($mileage)
@@ -91,6 +107,7 @@ class Vehicle{
     }
 
     /**
+     * This function gets the vehicle's service
      * @return mixed
      */
     public function getService()
@@ -99,6 +116,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle's service
      * @param mixed $maintenance
      */
     public function setService($maintenance)
@@ -107,6 +125,7 @@ class Vehicle{
     }
 
     /**
+     * This function gets the vehicle's status
      * @return mixed
      */
     public function getStatus()
@@ -115,6 +134,7 @@ class Vehicle{
     }
 
     /**
+     * This function sets the vehicle's status
      * @param mixed $status
      */
     public function setStatus($status)
