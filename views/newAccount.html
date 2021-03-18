@@ -69,6 +69,14 @@
                 <strong>Password must include:</strong> atleast 1 capital letter, 1 lowercase letter, 1 number,
                 1 special character ($!@#%&*\^), and be 8-32 characters in length.
             </div>
+            <div class="form-row mb-3">
+                <label class="mx-auto">Admin Account
+                    <input type="checkbox" name="isAdmin" id="isAdmin"
+                    <check if="{{isset(@isAdmin)}}">
+                        checked
+                    </check>>
+                </label>
+            </div>
 
 
 

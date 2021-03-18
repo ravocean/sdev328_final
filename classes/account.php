@@ -10,6 +10,23 @@ class Account{
     /**
      * @return mixed
      */
+    public function getRole()
+    {
+        return $this->_role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->_role = $role;
+    }
+    private $_role;
+
+    /**
+     * @return mixed
+     */
     public function getEmail()
     {
         return $this->_email;

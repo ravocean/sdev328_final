@@ -111,6 +111,7 @@ class Controller
         $this->_f3->set("passConfirm", isset($_POST['passConfirm']) ? $_POST['passConfirm'] : "");
         $this->_f3->set("fName", isset($_POST['fName']) ? $_POST['fName'] : "");
         $this->_f3->set("lName", isset($_POST['lName']) ? $_POST['lName'] : "");
+        $this->_f3->set("isAdmin", isset($_POST['isAdmin']) ? $_POST['isAdmin'] : null);
 
         //If POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -164,10 +165,12 @@ class Controller
                 $this->_f3->set("errors['pass']", 'Please enter a valid password');
             }
 
+            //If Admin is selected, set account role to 1, else 0 for a normal user
+            $account->setRole(isset($_POST['isAdmin']) ? 1 : 0);
+
             //Reroute
             if(empty($this->_f3->get('errors'))){
 
-                //TODO: Verify account save executed properly, display message appropriately
                 //Save account to database
                 $dataLayer->saveAccount($account);
 

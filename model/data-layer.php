@@ -90,7 +90,7 @@ class DataLayer
 
     function saveAccount($account){
         //Build query
-        $sql = "INSERT INTO account VALUES (null, :email, sha1(:pass), :first, :last, 0)";
+        $sql = "INSERT INTO account VALUES (null, :email, sha1(:pass), :first, :last, :role)";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -100,6 +100,7 @@ class DataLayer
         $statement->bindParam(':pass', $account->getPass(), PDO::PARAM_STR);
         $statement->bindParam(':first', $account->getFirstname(), PDO::PARAM_STR);
         $statement->bindParam(':last', $account->getLastname(), PDO::PARAM_STR);
+        $statement->bindParam(':role', $account->getRole(), PDO::PARAM_INT);
 
         //Process results
         $statement->execute();

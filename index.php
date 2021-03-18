@@ -51,6 +51,12 @@ $f3->route('GET|POST /userdash', function() {
     $controller->userDash();
 });
 
+//Route to Admin dashboard
+$f3->route('GET|POST /adminDash', function() {
+    global $controller;
+    $controller->adminDash();
+});
+
 //Route to Add Vehicle
 $f3->route('GET|POST /addVehicle', function() {
     global $controller;
