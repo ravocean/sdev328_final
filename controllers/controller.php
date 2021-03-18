@@ -253,4 +253,9 @@ class Controller
         $view = new Template();
         echo $view->render('views/accountRecovery.html');
     }
+
+    public function addVehicle(){
+        $view = new Template();
+        echo $view->render('views/addVehicle.html');
+    }
 }
