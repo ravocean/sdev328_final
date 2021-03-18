@@ -1,12 +1,16 @@
+/*
+ * Desc:    CSS styles for the SouthGarage App.
+ * Date:    3/1/21
+ * File:    styles.css
+ * Auth:    Ryan Rivera & Husrav Khomidov
+ */
 
 .mainSection {
 
     max-width: 1200px;
     margin: 50px auto;
     position: relative;
-
 }
-
 
 .admin-cont{
     max-width: 1200px;
@@ -64,5 +68,4 @@
     justify-content: center;
     align-items: center;
     padding: 15px;
-
 }
