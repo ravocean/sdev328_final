@@ -72,7 +72,84 @@
             <div class="col col-3 mx-auto">
                 <div class="d-grid gap-2">
                     <a href="addVehicle" class="btn btn-custom active" role="button" aria-pressed="true">Schedule a Service</a>
-                    <a href="#" class="btn btn-custom active" role="button" aria-pressed="true">Check Status</a>
+                </div>
+
+                <div class="d-grid gap-2 mt-5">
+                    <h5 class="text-center">Add Your Vehicle</h5>
+                    <select class="form-select mb-1" id="car" onchange="ChangeCarList()" onclick="carModels()">
+                        <option value="">Make</option>
+                        <option value="ACU">Acura</option>
+                        <option value="AUD">Audi</option>
+                        <option value="BMW">BMW</option>
+                        <option value="CAD">Cadillac</option>
+                        <option value="DOD">Dodge</option>
+                        <option value="FOR">Ford</option>
+                        <option value="GMC">GMC</option>
+                        <option value="HON">Honda</option>
+                        <option value="INF">Infiniti</option>
+                        <option value="JEE">Jeep</option>
+                        <option value="KIA">Kia</option>
+                        <option value="LEX">Lexus</option>
+                        <option value="MAZ">Mazda</option>
+                        <option value="MER">Mercedes</option>
+                        <option value="MIT">Mitsubishi</option>
+                        <option value="NIS">Nissan</option>
+                        <option value="POR">Porsche</option>
+                        <option value="SUB">Subaru</option>
+                        <option value="TES">Tesla</option>
+                        <option value="TOY">Toyota</option>
+                        <option value="VW">Volkswagen</option>
+                        <option value="VO">Volvo</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <script>
+                        let carsAndModels = {};
+                        carsAndModels['ACU'] = ['ILX', 'Integra', 'MDX', 'NSX', 'RDX', 'RSX', 'TL', 'TLX', 'TSX', 'Other'];
+                        carsAndModels['AUD'] = ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8', 'Other'];
+                        carsAndModels['BMW'] = ['2-Series', '3-Series', '4-Series', '5-Series', '6-Series', '7-Series', 'Other'];
+                        carsAndModels['CAD'] = ['ATS', 'CTx', 'Escalade', 'Other'];
+                        carsAndModels['DOD'] = ['Caravan', 'Challenger', 'Charger', 'Dart', 'RAM Trucks', 'Other'];
+                        carsAndModels['FOR'] = ['Bronco', 'E-Series', 'Edge', 'Escape', 'Excursion', 'Expedition', 'Explorer', 'F-Series', 'GT', 'Ranger', 'Taurus', 'Other'];
+                        carsAndModels['GMC'] = ['Savana', 'Sierra', 'Yukon', 'Other'];
+                        carsAndModels['HON'] = ['Accord', 'Civic', 'CR-V', 'CR-Z', 'Element', 'Fit', 'HR-V', 'Odyssey', 'Prelude', 'Other'];
+                        carsAndModels['INF'] = ['G-Series', 'I-Series', 'J-Series', 'M-Series', 'Q-Series', 'Other'];
+                        carsAndModels['JEE'] = ['Cherrokee', 'Compass', 'Grand Cherokee', 'Liberty', 'Patriot', 'Other'];
+                        carsAndModels['KIA'] = ['Forte', 'K5', 'Optima', 'Rio', 'Sedona', 'Sorento', 'Soul', 'Stinger', 'Other'];
+                        carsAndModels['LEX'] = ['CT', 'ES', 'GS', 'IS', 'LC', 'LS', 'LX', 'RX', 'Other'];
+                        carsAndModels['MAZ'] = ['2', '3', '6', 'CX', 'MX', 'RX'];
+                        carsAndModels['MER'] = ['B-Class', 'C-Class', 'E-Class', 'G-Class', 'GL-Class', 'ML-Class', 'S-Class', 'Other'];
+                        carsAndModels['MIT'] = ['3000GT', 'Eclipse', 'Galant', 'Lancer', 'Miraj', 'Outlander', 'Other'];
+                        carsAndModels['NIS'] = ['200SX', '240SX', '350Z', '370Z', 'Altima', 'Armada', 'Frontier', 'GT-R', 'Juke', 'Leaf', 'Maxima', 'Murano', 'Rogue', 'Other'];
+                        carsAndModels['POR'] = ['718', '911', 'Boxter', 'Carrera', 'Cayenne', 'Cayman', 'Macan', 'Panamera', 'Taycan', 'Other'];
+                        carsAndModels['SUB'] = ['BRZ', 'Crosstrek', 'Forester', 'Impreza', 'Legacy', 'Outback', 'WRX/STI', 'Other'];
+                        carsAndModels['TES'] = ['S', '3', 'X', 'Y'];
+                        carsAndModels['TOY'] = ['4Runner', '86', 'Avalon', 'C-HR', 'Camry', 'Celica', 'Corolla', 'FJ Cruiser', 'Highlander', 'Land Cruiser', 'Mark II', 'Matrix', 'MR2', 'Prius', 'RAV4', 'Sequoia', 'Sienna', 'Supra', 'Tacoma', 'Tundra', 'Yaris', 'Other'];
+                        carsAndModels['VW'] = ['Arteon', 'Atlas', 'Beetle', 'CC', 'EOS', 'Golf', 'Jetta', 'Passat', 'Tiguan', 'Touareg', 'Other'];
+                        carsAndModels['VO'] = ['S-Series', 'V-Series', 'XC-Series', 'Other'];
+
+                        function ChangeCarList() {
+                            let carList = document.getElementById("car");
+                            let modelList = document.getElementById("carmodel");
+                            let selCar = carList.options[carList.selectedIndex].value;
+                            while (modelList.options.length) {
+                                modelList.remove(0);
+                            }
+                            let cars = carsAndModels[selCar];
+                            if (cars) {
+                                document.getElementById('carmodel').disabled = false;
+                                let i;
+                                for (i = 0; i < cars.length; i++) {
+                                    let car = new Option(cars[i], i);
+                                    modelList.options.add(car);
+                                }
+                            }
+                        }
+                    </script>
+
+                    <select class="form-select mb-1" id="carmodel" disabled></select>
+                    <input class="form-control mb-1" id="carother" type="text" placeholder="Enter Other Model/Trim">
+                    <input class="form-control mb-1" id="caryear" type="text" placeholder="Enter Year">
+                    <button class="btn btn-custom" type="button">Add</button>
                 </div>
             </div><!--Buttons-->
         </div><!--Top Content-->
