@@ -20,99 +20,84 @@
         </div><!--Top Content-->
 
 
-        <!--Customer Select-->
-        <div class="col col-3 mt-3">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Select...</option>
-                <repeat group="{{@listUsers}}" value="{{@listUser}}">
-                    <option>{{@listUser.firstname}} {{@listUser.lastname}}</option>
-                </repeat>
-            </select>
-        </div><!--Customer Select-->
-
-
-        <!--User Table-->
-        <div class="col mt-2">
-
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Vehicle</th>
-                            <th scope="col">Service</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>2012 Toyota Camry</td>
-                            <td>Oil Change</td>
-                            <td>Being Processed</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>2015 BMW 335i</td>
-                            <td>Head Gasket</td>
-                            <td>Being Processed</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mike</td>
-                            <td>Cruz</td>
-                            <td>2005 Mazda 6</td>
-                            <td>Tire Change</td>
-                            <td>Ready</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <!--User Select Form-->
+        <form id="userSelectForm" method="post" action="#">
+            <div class="col col-3 mt-3">
+                <select id="userSelect" name="userID" class="form-select" aria-label="Default select example">
+                    <option>Select...</option>
+                    <repeat group="{{@listUsers}}" value="{{@listUser}}">
+                        <option value="{{@listUser.accountID}}">{{@listUser.firstname}} {{@listUser.lastname}}</option>
+                    </repeat>
+                </select>
             </div>
+        </form><!--End of Form-->
 
-        </div><!--User Table-->
 
+        <!--Individual User Table-->
+        <div class="table-responsive">
+                <table id="user-table" class="table">
+
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <th scope="col">Year</th>
+                            <th scope="col">Make</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Miles</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Current Status</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody>
+                        <repeat group="{{@userVehicles}}" value="{{@userVehicle}}">
+                            <tr>
+                                <td>{{@userVehicle.year}}</td>
+                                <td>{{@userVehicle.make}}</td>
+                                <td>{{@userVehicle.model}}</td>
+                                <td>{{@userVehicle.mileage}}</td>
+                                <td>{{@userVehicle.maintenance}}</td>
+                                <td>{{@userVehicle.status}}</td>
+                            </tr>
+                        </repeat>
+                    </tbody>
+                </table>
+        </div><!-- End of Table -->
+
+        <!--All Users Table-->
         <h2 class="mt-4">All Tickets</h2>
-
-        <!--Table-->
         <div class="table-responsive">
             <table id="member-table" class="table">
 
                 <!-- Table Head -->
                 <thead>
-                <tr>
-                    <th scope="col">Firstname</th>
-                    <th scope="col">Lastname</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Make</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Miles</th>
-                    <th scope="col">Service</th>
-                    <th scope="col">Current Status</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Make</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Miles</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Current Status</th>
+                    </tr>
                 </thead>
 
                 <!-- Table Body -->
                 <tbody>
-                <repeat group="{{@results}}" value="{{@result}}">
-                    <tr>
-                        <td>{{@result.firstname}}</td>
-                        <td>{{@result.lastname}}</td>
-                        <td>{{@result.year}}</td>
-                        <td>{{@result.make}}</td>
-                        <td>{{@result.model}}</td>
-                        <td>{{@result.mileage}}</td>
-                        <td>{{@result.maintenance}}</td>
-                        <td>{{@result.status}}</td>
-                    </tr>
-                </repeat>
+                    <repeat group="{{@results}}" value="{{@result}}">
+                        <tr>
+                            <td>{{@result.firstname}}</td>
+                            <td>{{@result.lastname}}</td>
+                            <td>{{@result.year}}</td>
+                            <td>{{@result.make}}</td>
+                            <td>{{@result.model}}</td>
+                            <td>{{@result.mileage}}</td>
+                            <td>{{@result.maintenance}}</td>
+                            <td>{{@result.status}}</td>
+                        </tr>
+                    </repeat>
                 </tbody>
             </table>
         </div><!-- End of Table -->

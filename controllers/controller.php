@@ -234,7 +234,7 @@ class Controller
         $this->_f3->set("title", "User Dashboard");
 
         //Get user vehicles from database, save to f3 hive.
-        $this->_f3->set('results', $dataLayer->getUserVehicles($_SESSION['user']));
+        $this->_f3->set('results', $dataLayer->getUserVehicles($_SESSION['user']['accountID']));
 
         //Render the page
         $view = new Template();
@@ -257,13 +257,16 @@ class Controller
         //Set the page title
         $this->_f3->set("title", "Admin Dashboard");
 
-        //Get all vehicles from database, save to f3 hive.
+        //Get all vehicles from database, save to f3 hive to populate the open tickets table.
         $this->_f3->set('results', $dataLayer->getOpenServiceTasks());
 
-        //Get users from database, save to f3 hive
+        //Get users from database, save to f3 hive to populate the user select
         $this->_f3->set('listUsers', $dataLayer->getUsers());
 
-//        var_dump($this->_f3->get('listUsers'));
+        //If a user has been selected, get the user's vehicles and save to f3 hive to populate user table
+        if(isset($_POST['userID'])){
+            $this->_f3->set("userVehicles", $dataLayer->getUserVehicles($_POST['userID']));
+        }
 
         //Render the page
         $view = new Template();

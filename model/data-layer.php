@@ -71,36 +71,13 @@ class DataLayer
     }
 
     /**
-     * This function gets all vehicle database table entries matching the supplied user accountID
-     * @param $user Object account object
-     * @return array array of database entries
-     */
-    function getUserVehicles($user)
-    {
-        //Create a query for the database table
-        $sql = "SELECT firstname, lastname, year, make, model, mileage, maintenance, status FROM account NATURAL JOIN vehicle WHERE accountID = :accountID";
-
-        //Prepare the statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //Bind the parameters
-        $statement->bindParam(':accountID', $user['accountID'], PDO::PARAM_INT);
-
-        //Process the results
-        $statement->execute();
-
-        //Return the results
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    /**
      * This function gets all vehicle database table entries
      * @return array array of all vehicle table entries
      */
     function getOpenServiceTasks()
     {
         //Create a query for the database table
-        $sql = "SELECT firstname, lastname, year, make, model, mileage, maintenance, status 
+        $sql = "SELECT accountID, firstname, lastname, year, make, model, mileage, maintenance, status 
                 FROM account NATURAL JOIN vehicle";
 
         //Prepare the statement
@@ -134,19 +111,26 @@ class DataLayer
     }
 
     /**
-     * This function provides an array of states
-     * @return string[] of all states
+     * This function gets all vehicle database table entries matching the supplied user accountID
+     * @param $userID int user's accountID
+     * @return array array of database entries
      */
-    function getStates()
+    function getUserVehicles($userID)
     {
-        return array('Alabama','Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
-            'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana',
-            'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
-            'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana, Nebraska', 'Nevada',
-            'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina',
-            'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
-            'Washington', 'West Virginia', 'Wisconsin', 'Wyoming');
+        //Create a query for the database table
+        $sql = "SELECT firstname, lastname, year, make, model, mileage, maintenance, status FROM account NATURAL JOIN vehicle WHERE accountID = :accountID";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Bind the parameters
+        $statement->bindParam(':accountID', $userID, PDO::PARAM_INT);
+
+        //Process the results
+        $statement->execute();
+
+        //Return the results
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -228,5 +212,21 @@ class DataLayer
 
         //Process the results
         $statement->execute();
+    }
+
+    /**
+     * This function provides an array of states
+     * @return string[] of all states
+     */
+    function getStates()
+    {
+        return array('Alabama','Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+            'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana',
+            'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
+            'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana, Nebraska', 'Nevada',
+            'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina',
+            'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
+            'Washington', 'West Virginia', 'Wisconsin', 'Wyoming');
     }
 }
