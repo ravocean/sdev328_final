@@ -37,6 +37,11 @@ class Controller
      */
     function login()
     {
+        //If logged in, redirect to appropriate page
+        if(isset($_SESSION['user'])) {
+            $this->_f3->reroute($_SESSION['user']['role'] == 0 ? '/userDash' : '/adminDash');
+        }
+
         //Access globals
         global $dataLayer;
         global $validator;
@@ -120,6 +125,11 @@ class Controller
      */
     function newAccount()
     {
+        //If logged in, redirect to appropriate page
+        if(isset($_SESSION['user'])) {
+            $this->_f3->reroute($_SESSION['user']['role'] == 0 ? '/userDash' : '/adminDash');
+        }
+
         //Access globals
         global $dataLayer;
         global $validator;
