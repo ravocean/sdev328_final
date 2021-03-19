@@ -11,24 +11,28 @@
 <!--Page Content-->
 <section class="mainSection">
     <div class="container shadow-lg p-3 mb-5 bg-white rounded">
-
         <!--Top Content-->
         <div class="row">
             <!--Carousel-->
             <div class="col col-8">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="../sdev328_final/images/service05.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Everything is Considered</h5>
-                                <p>When maintaining your car, we check everything and make sure we take care of each issue.
+                                <p>When maintaining your car, we check everything and make sure we take care of each
+                                    issue.
                                     Everything we do is recorded for your convenience.</p>
                             </div>
                         </div>
@@ -36,15 +40,18 @@
                             <img src="../sdev328_final/images/service06.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Check Engine Light Diagnostics & Repair</h5>
-                                <p>When the check engine light turns on, there's a tendency to worry that disaster is near.
-                                    Our diagnostic tools will identify any issues with the vehicle and give clear instructions for repairing</p>
+                                <p>When the check engine light turns on, there's a tendency to worry that disaster is
+                                    near.
+                                    Our diagnostic tools will identify any issues with the vehicle and give clear
+                                    instructions for repairing</p>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <img src="../sdev328_final/images/service07.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Team of Pros</h5>
-                                <p>Our team members are highly trained professionals with high experience and excellent skills.
+                                <p>Our team members are highly trained professionals with high experience and excellent
+                                    skills.
                                     Each vehicle is fully inspected in and out.</p>
                             </div>
                         </div>
@@ -52,202 +59,410 @@
                             <img src="../sdev328_final/images/service08.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block" style="text-shadow: 1px 1px #414141">
                                 <h5>Individual Approach</h5>
-                                <p>We work closely with all of our customers. We provide a full report for everything that's done
+                                <p>We work closely with all of our customers. We provide a full report for everything
+                                    that's done
                                     on your vehicle.</p>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-            </div><!--Dashboard-->
+            </div><!--Carousel-->
 
-            <!--Buttons-->
+            <!--Vehicle and Service Select-->
             <div class="col col-3 mx-auto">
-                <div class="d-grid gap-2">
-                    <a href="addVehicle" class="btn btn-custom active" role="button" aria-pressed="true">Schedule a Service</a>
-                </div>
+                <!--Form Add Vehicle-->
+                <form action="submit">
+                    <div class="d-grid gap-2">
+                        <h5 class="text-center">Add Your Vehicle</h5>
+                        <select class="form-select mb-1" id="car" onchange="ChangeCarList()" onclick="carModels()">
+                            <option value="">Make</option>
+                            <option value="ACU">Acura</option>
+                            <option value="AUD">Audi</option>
+                            <option value="BMW">BMW</option>
+                            <option value="CAD">Cadillac</option>
+                            <option value="DOD">Dodge</option>
+                            <option value="FOR">Ford</option>
+                            <option value="GMC">GMC</option>
+                            <option value="HON">Honda</option>
+                            <option value="INF">Infiniti</option>
+                            <option value="JEE">Jeep</option>
+                            <option value="KIA">Kia</option>
+                            <option value="LEX">Lexus</option>
+                            <option value="MAZ">Mazda</option>
+                            <option value="MER">Mercedes</option>
+                            <option value="MIT">Mitsubishi</option>
+                            <option value="NIS">Nissan</option>
+                            <option value="POR">Porsche</option>
+                            <option value="SUB">Subaru</option>
+                            <option value="TES">Tesla</option>
+                            <option value="TOY">Toyota</option>
+                            <option value="VW">Volkswagen</option>
+                            <option value="VO">Volvo</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        <script>
+                            let carsAndModels = {};
+                            carsAndModels['ACU'] = ['ILX', 'Integra', 'MDX', 'NSX', 'RDX', 'RSX', 'TL', 'TLX', 'TSX', 'Other'];
+                            carsAndModels['AUD'] = ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8', 'Other'];
+                            carsAndModels['BMW'] = ['2-Series', '3-Series', '4-Series', '5-Series', '6-Series', '7-Series', 'Other'];
+                            carsAndModels['CAD'] = ['ATS', 'CTx', 'Escalade', 'Other'];
+                            carsAndModels['DOD'] = ['Caravan', 'Challenger', 'Charger', 'Dart', 'RAM Trucks', 'Other'];
+                            carsAndModels['FOR'] = ['Bronco', 'E-Series', 'Edge', 'Escape', 'Excursion', 'Expedition', 'Explorer', 'F-Series', 'GT', 'Ranger', 'Taurus', 'Other'];
+                            carsAndModels['GMC'] = ['Savana', 'Sierra', 'Yukon', 'Other'];
+                            carsAndModels['HON'] = ['Accord', 'Civic', 'CR-V', 'CR-Z', 'Element', 'Fit', 'HR-V', 'Odyssey', 'Prelude', 'Other'];
+                            carsAndModels['INF'] = ['G-Series', 'I-Series', 'J-Series', 'M-Series', 'Q-Series', 'Other'];
+                            carsAndModels['JEE'] = ['Cherrokee', 'Compass', 'Grand Cherokee', 'Liberty', 'Patriot', 'Other'];
+                            carsAndModels['KIA'] = ['Forte', 'K5', 'Optima', 'Rio', 'Sedona', 'Sorento', 'Soul', 'Stinger', 'Other'];
+                            carsAndModels['LEX'] = ['CT', 'ES', 'GS', 'IS', 'LC', 'LS', 'LX', 'RX', 'Other'];
+                            carsAndModels['MAZ'] = ['2', '3', '6', 'CX', 'MX', 'RX'];
+                            carsAndModels['MER'] = ['B-Class', 'C-Class', 'E-Class', 'G-Class', 'GL-Class', 'ML-Class', 'S-Class', 'Other'];
+                            carsAndModels['MIT'] = ['3000GT', 'Eclipse', 'Galant', 'Lancer', 'Miraj', 'Outlander', 'Other'];
+                            carsAndModels['NIS'] = ['200SX', '240SX', '350Z', '370Z', 'Altima', 'Armada', 'Frontier', 'GT-R', 'Juke', 'Leaf', 'Maxima', 'Murano', 'Rogue', 'Other'];
+                            carsAndModels['POR'] = ['718', '911', 'Boxter', 'Carrera', 'Cayenne', 'Cayman', 'Macan', 'Panamera', 'Taycan', 'Other'];
+                            carsAndModels['SUB'] = ['BRZ', 'Crosstrek', 'Forester', 'Impreza', 'Legacy', 'Outback', 'WRX/STI', 'Other'];
+                            carsAndModels['TES'] = ['S', '3', 'X', 'Y'];
+                            carsAndModels['TOY'] = ['4Runner', '86', 'Avalon', 'C-HR', 'Camry', 'Celica', 'Corolla', 'FJ Cruiser', 'Highlander', 'Land Cruiser', 'Mark II', 'Matrix', 'MR2', 'Prius', 'RAV4', 'Sequoia', 'Sienna', 'Supra', 'Tacoma', 'Tundra', 'Yaris', 'Other'];
+                            carsAndModels['VW'] = ['Arteon', 'Atlas', 'Beetle', 'CC', 'EOS', 'Golf', 'Jetta', 'Passat', 'Tiguan', 'Touareg', 'Other'];
+                            carsAndModels['VO'] = ['S-Series', 'V-Series', 'XC-Series', 'Other'];
 
-                <div class="d-grid gap-2 mt-5">
-                    <h5 class="text-center">Add Your Vehicle</h5>
-                    <select class="form-select mb-1" id="car" onchange="ChangeCarList()" onclick="carModels()">
-                        <option value="">Make</option>
-                        <option value="ACU">Acura</option>
-                        <option value="AUD">Audi</option>
-                        <option value="BMW">BMW</option>
-                        <option value="CAD">Cadillac</option>
-                        <option value="DOD">Dodge</option>
-                        <option value="FOR">Ford</option>
-                        <option value="GMC">GMC</option>
-                        <option value="HON">Honda</option>
-                        <option value="INF">Infiniti</option>
-                        <option value="JEE">Jeep</option>
-                        <option value="KIA">Kia</option>
-                        <option value="LEX">Lexus</option>
-                        <option value="MAZ">Mazda</option>
-                        <option value="MER">Mercedes</option>
-                        <option value="MIT">Mitsubishi</option>
-                        <option value="NIS">Nissan</option>
-                        <option value="POR">Porsche</option>
-                        <option value="SUB">Subaru</option>
-                        <option value="TES">Tesla</option>
-                        <option value="TOY">Toyota</option>
-                        <option value="VW">Volkswagen</option>
-                        <option value="VO">Volvo</option>
-                        <option value="OTHER">Other</option>
-                    </select>
-                    <script>
-                        let carsAndModels = {};
-                        carsAndModels['ACU'] = ['ILX', 'Integra', 'MDX', 'NSX', 'RDX', 'RSX', 'TL', 'TLX', 'TSX', 'Other'];
-                        carsAndModels['AUD'] = ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8', 'Other'];
-                        carsAndModels['BMW'] = ['2-Series', '3-Series', '4-Series', '5-Series', '6-Series', '7-Series', 'Other'];
-                        carsAndModels['CAD'] = ['ATS', 'CTx', 'Escalade', 'Other'];
-                        carsAndModels['DOD'] = ['Caravan', 'Challenger', 'Charger', 'Dart', 'RAM Trucks', 'Other'];
-                        carsAndModels['FOR'] = ['Bronco', 'E-Series', 'Edge', 'Escape', 'Excursion', 'Expedition', 'Explorer', 'F-Series', 'GT', 'Ranger', 'Taurus', 'Other'];
-                        carsAndModels['GMC'] = ['Savana', 'Sierra', 'Yukon', 'Other'];
-                        carsAndModels['HON'] = ['Accord', 'Civic', 'CR-V', 'CR-Z', 'Element', 'Fit', 'HR-V', 'Odyssey', 'Prelude', 'Other'];
-                        carsAndModels['INF'] = ['G-Series', 'I-Series', 'J-Series', 'M-Series', 'Q-Series', 'Other'];
-                        carsAndModels['JEE'] = ['Cherrokee', 'Compass', 'Grand Cherokee', 'Liberty', 'Patriot', 'Other'];
-                        carsAndModels['KIA'] = ['Forte', 'K5', 'Optima', 'Rio', 'Sedona', 'Sorento', 'Soul', 'Stinger', 'Other'];
-                        carsAndModels['LEX'] = ['CT', 'ES', 'GS', 'IS', 'LC', 'LS', 'LX', 'RX', 'Other'];
-                        carsAndModels['MAZ'] = ['2', '3', '6', 'CX', 'MX', 'RX'];
-                        carsAndModels['MER'] = ['B-Class', 'C-Class', 'E-Class', 'G-Class', 'GL-Class', 'ML-Class', 'S-Class', 'Other'];
-                        carsAndModels['MIT'] = ['3000GT', 'Eclipse', 'Galant', 'Lancer', 'Miraj', 'Outlander', 'Other'];
-                        carsAndModels['NIS'] = ['200SX', '240SX', '350Z', '370Z', 'Altima', 'Armada', 'Frontier', 'GT-R', 'Juke', 'Leaf', 'Maxima', 'Murano', 'Rogue', 'Other'];
-                        carsAndModels['POR'] = ['718', '911', 'Boxter', 'Carrera', 'Cayenne', 'Cayman', 'Macan', 'Panamera', 'Taycan', 'Other'];
-                        carsAndModels['SUB'] = ['BRZ', 'Crosstrek', 'Forester', 'Impreza', 'Legacy', 'Outback', 'WRX/STI', 'Other'];
-                        carsAndModels['TES'] = ['S', '3', 'X', 'Y'];
-                        carsAndModels['TOY'] = ['4Runner', '86', 'Avalon', 'C-HR', 'Camry', 'Celica', 'Corolla', 'FJ Cruiser', 'Highlander', 'Land Cruiser', 'Mark II', 'Matrix', 'MR2', 'Prius', 'RAV4', 'Sequoia', 'Sienna', 'Supra', 'Tacoma', 'Tundra', 'Yaris', 'Other'];
-                        carsAndModels['VW'] = ['Arteon', 'Atlas', 'Beetle', 'CC', 'EOS', 'Golf', 'Jetta', 'Passat', 'Tiguan', 'Touareg', 'Other'];
-                        carsAndModels['VO'] = ['S-Series', 'V-Series', 'XC-Series', 'Other'];
-
-                        function ChangeCarList() {
-                            let carList = document.getElementById("car");
-                            let modelList = document.getElementById("carmodel");
-                            let selCar = carList.options[carList.selectedIndex].value;
-                            while (modelList.options.length) {
-                                modelList.remove(0);
-                            }
-                            let cars = carsAndModels[selCar];
-                            if (cars) {
-                                document.getElementById('carmodel').disabled = false;
-                                let i;
-                                for (i = 0; i < cars.length; i++) {
-                                    let car = new Option(cars[i], i);
-                                    modelList.options.add(car);
+                            function ChangeCarList() {
+                                let carList = document.getElementById("car");
+                                let modelList = document.getElementById("carmodel");
+                                let selCar = carList.options[carList.selectedIndex].value;
+                                while (modelList.options.length) {
+                                    modelList.remove(0);
+                                }
+                                let cars = carsAndModels[selCar];
+                                if (cars) {
+                                    document.getElementById('carmodel').disabled = false;
+                                    let i;
+                                    for (i = 0; i < cars.length; i++) {
+                                        let car = new Option(cars[i], i);
+                                        modelList.options.add(car);
+                                    }
                                 }
                             }
-                        }
-                    </script>
+                        </script>
 
-                    <select class="form-select mb-1" id="carmodel" disabled></select>
-                    <input class="form-control mb-1" id="carother" type="text" placeholder="Enter Other Model/Trim">
-                    <input class="form-control mb-1" id="caryear" type="text" placeholder="Enter Year">
-                    <button class="btn btn-custom" type="button">Add</button>
-                </div>
-            </div><!--Buttons-->
+                        <select class="form-select mb-1" id="carmodel" disabled></select>
+                        <input class="form-control mb-1" id="carother" type="text" placeholder="Enter Other Model/Trim">
+                        <input class="form-control mb-1" id="caryear" type="text" placeholder="Enter Year">
+                        <button class="btn btn-custom" type="submit">Add</button>
+                    </div>
+                </form> <!--Form Add Vehicle-->
+
+                <!--Form Add Service-->
+                <form action="submit">
+                    <div class="d-grid gap-2 mt-5">
+                        <h5 class="text-center">Select Services</h5>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                            <!--Common Services-->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                            aria-controls="flush-collapseOne">
+                                        Common Services
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <!--Engine Oil & Filter Change-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Engine Oil & Filter Change" id="oilChange">
+                                            <label class="form-check-label" for="oilChange">
+                                                Engine Oil & Filter Change
+                                            </label>
+                                        </div><!--Engine Oil & Filter Change-->
+
+                                        <!--Rotate Wheels-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Rotate Wheels"
+                                                   id="wheelRotate">
+                                            <label class="form-check-label" for="wheelRotate">
+                                                Rotate Wheels
+                                            </label>
+                                        </div><!--Rotate Wheels-->
+
+                                        <!--Wiper Blade Replacement-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Wiper Blade Replacement"
+                                                   id="wiperBlade">
+                                            <label class="form-check-label" for="wiperBlade">
+                                                Wiper Blade Replacement
+                                            </label>
+                                        </div><!--Wiper Blade Replacement-->
+
+                                        <!--Dust and pollen filter-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Dust and pollen filter"
+                                                   id="dustFilter">
+                                            <label class="form-check-label" for="dustFilter">
+                                                Dust and pollen filter
+                                            </label>
+                                        </div><!--Dust and pollen filter-->
+
+                                        <!--Check Engine Light-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Check Engine Light"
+                                                   id="checkEngine">
+                                            <label class="form-check-label" for="checkEngine">
+                                                Check Engine Light
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  <!--Common Services-->
+
+                            <!--More Services-->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                            aria-controls="flush-collapseTwo">
+                                        More Services
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+
+                                        <!--Four Wheel Alignment-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Four Wheel Alignment"
+                                                   id="alignment">
+                                            <label class="form-check-label" for="alignment">
+                                                Four Wheel Alignment
+                                            </label>
+                                        </div><!--Four Wheel Alignment-->
+
+                                        <!--Change brake fluid-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Change brake fluid"
+                                                   id="brakeFluid">
+                                            <label class="form-check-label" for="brakeFluid">
+                                                Change brake fluid
+                                            </label>
+                                        </div><!--Change brake fluid-->
+
+                                        <!--Bulb or Lighting-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Bulb or Lighting"
+                                                   id="bulbLight">
+                                            <label class="form-check-label" for="bulbLight">
+                                                Bulb or Lighting
+                                            </label>
+                                        </div><!--Bulb or Lighting-->
+
+                                        <!--Windshield or Glass Repair-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Windshield or Glass Repair" id="windshield">
+                                            <label class="form-check-label" for="windshield">
+                                                Windshield or Glass Repair
+                                            </label>
+                                        </div><!--Windshield or Glass Repair-->
+
+                                        <!--Engine Performance -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Engine Performance Diagnosis" id="enginePerformance">
+                                            <label class="form-check-label" for="enginePerformance">
+                                                Engine Performance
+                                            </label>
+                                        </div><!--Engine Performance-->
+
+                                        <!--Electrical Systems-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Electrical Systems"
+                                                   id="electricalSystems">
+                                            <label class="form-check-label" for="electricalSystems">
+                                                Electrical Systems
+                                            </label>
+                                        </div><!--Electrical Systems-->
+
+                                        <!--Transmission Diagnosis-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Transmission Diagnosis"
+                                                   id="transmissionDiagnosis">
+                                            <label class="form-check-label" for="transmissionDiagnosis">
+                                                Transmission Diagnosis
+                                            </label>
+                                        </div><!--Transmission Diagnosis-->
+
+                                        <!--Heating or Air Conditioning-->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   value="Heating or Air Conditioning" id="heating">
+                                            <label class="form-check-label" for="heating">
+                                                Heating or Air Conditioning
+                                            </label>
+                                        </div><!--Heating or Air Conditioning-->
+                                    </div>
+                                </div>
+                            </div><!--More Services-->
+
+                            <!--Add a Service-->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                            aria-controls="flush-collapseThree">
+                                        Add a Service
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <input class="form-control mb-1" id="extraService" type="text"
+                                               placeholder="Enter Here">
+                                    </div>
+                                </div>
+                            </div><!--Add a Service-->
+                        </div>
+                        <button class="btn btn-custom" type="submit">Add</button>
+                    </div><!--Add Service-->
+                </form>
+            </div><!--Vehicle and Service Select-->
         </div><!--Top Content-->
+    </div>
 
-        <hr class="style13"> <!--Line-->
+    <hr class="style13"> <!--Line-->
 
-        <!--Services We Offer-->
-        <div class="row mt-5">
-            <!--Description-->
-            <div class="col col-8">
-                <div class="d-flex align-items-start">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            <p>South Garage is proud to serve the communities of Seattle – Tacoma area with a full range of auto repair services.
-                                A trained auto mechanic is worth their weight in gold, and we have been delighting customers with ours since our very
-                                first year of business. Our auto repair technicians complete 40 hours of additional training every year, making them
-                                the leading auto mechanics in Pacific Northwest.
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <p>If your car needs an oil change, you'll want to schedule an appointment with a seasoned auto mechanic.
-                                If you live in the Seattle – Tacoma area, bring your car into South Garage for an oil change as well as all
-                                your other auto repair needs. Our technicians are ASE-Certified and boast years of education and experience in
-                                providing oil changes to drivers throughout PNW.
-                            </p>
-                            <p>Oil change is a way of life for automobile owners, regardless of the make and model.
-                                Whether you own a Camry an Odyssey or a Volt, you need to be getting oil changes on a regular basis.
-                                We recommend changing oil every 5,000 miles as a baseline. But whether you need to do an oil change every
-                                5,000 miles or twice per year can depend upon your specific car and your driving habits.
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                            <p>If you are an auto owner looking for brake repair and services in Seattle – Tacoma area, look no further than South Garage!
-                                We can help you with all your auto repair needs, including brake repair and services, and get you back on the road in no time.
-                                Since 2010, our auto repair shop has been committed to the very highest quality of brake repair and services,
-                                and even our competitors have taken notice.
-                            </p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                            <p>When your check engine light comes on, it's important to be prepared to take your car to an auto mechanic right away.
-                                When auto owners in Tacoma – Seattle need auto repair, they bring their vehicles to South Garage.
-                                You can trust our team of top-notch auto mechanics to identify the underlying cause of your flashing check engine light.
-                            </p>
-                        </div>
+    <!--Services We Offer-->
+    <div class="row mt-5">
+        <!--Description-->
+        <div class="col col-8">
+            <div class="d-flex align-items-start">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                         aria-labelledby="v-pills-home-tab">
+                        <p>South Garage is proud to serve the communities of Seattle – Tacoma area with a full range of
+                            auto repair services.
+                            A trained auto mechanic is worth their weight in gold, and we have been delighting customers
+                            with ours since our very
+                            first year of business. Our auto repair technicians complete 40 hours of additional training
+                            every year, making them
+                            the leading auto mechanics in Pacific Northwest.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                         aria-labelledby="v-pills-profile-tab">
+                        <p>If your car needs an oil change, you'll want to schedule an appointment with a seasoned auto
+                            mechanic.
+                            If you live in the Seattle – Tacoma area, bring your car into South Garage for an oil change
+                            as well as all
+                            your other auto repair needs. Our technicians are ASE-Certified and boast years of education
+                            and experience in
+                            providing oil changes to drivers throughout PNW.
+                        </p>
+                        <p>Oil change is a way of life for automobile owners, regardless of the make and model.
+                            Whether you own a Camry an Odyssey or a Volt, you need to be getting oil changes on a
+                            regular basis.
+                            We recommend changing oil every 5,000 miles as a baseline. But whether you need to do an oil
+                            change every
+                            5,000 miles or twice per year can depend upon your specific car and your driving habits.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                         aria-labelledby="v-pills-messages-tab">
+                        <p>If you are an auto owner looking for brake repair and services in Seattle – Tacoma area, look
+                            no further than South Garage!
+                            We can help you with all your auto repair needs, including brake repair and services, and
+                            get you back on the road in no time.
+                            Since 2010, our auto repair shop has been committed to the very highest quality of brake
+                            repair and services,
+                            and even our competitors have taken notice.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                         aria-labelledby="v-pills-settings-tab">
+                        <p>When your check engine light comes on, it's important to be prepared to take your car to an
+                            auto mechanic right away.
+                            When auto owners in Tacoma – Seattle need auto repair, they bring their vehicles to South
+                            Garage.
+                            You can trust our team of top-notch auto mechanics to identify the underlying cause of your
+                            flashing check engine light.
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!--Buttons-->
-            <div class="col col-3 mx-auto">
-                <div class="d-grid gap-2">
-                    <div class="nav flex-column nav-pills me-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button"
-                                role="tab" aria-controls="v-pills-home" aria-selected="true">General Repair</button>
-                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="false">Oil Change</button>
-                        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button"
-                                role="tab" aria-controls="v-pills-messages" aria-selected="false">Break Services</button>
-                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button"
-                                role="tab" aria-controls="v-pills-settings" aria-selected="false">Check Engine Light</button>
-                    </div>
+        <!--Buttons-->
+        <div class="col col-3 mx-auto">
+            <div class="d-grid gap-2">
+                <div class="nav flex-column nav-pills me-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home" type="button"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true">General Repair
+                    </button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-profile" type="button"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Oil Change
+                    </button>
+                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-messages" type="button"
+                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Break Services
+                    </button>
+                    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-settings" type="button"
+                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Check Engine Light
+                    </button>
                 </div>
-            </div><!--Buttons-->
-        </div><!--Services We Offer-->
+            </div>
+        </div><!--Buttons-->
+    </div><!--Services We Offer-->
 
-        <hr class="style13"> <!--Line-->
+    <hr class="style13"> <!--Line-->
 
-        <!--Table-->
-        <div class="table-responsive">
-            <table id="member-table" class="table">
+    <!--Table-->
+    <div class="table-responsive">
+        <table id="member-table" class="table">
 
-                <!-- Table Head -->
-                <thead>
+            <!-- Table Head -->
+            <thead>
+            <tr>
+                <th scope="col">Year</th>
+                <th scope="col">Make</th>
+                <th scope="col">Model</th>
+                <th scope="col">Miles</th>
+                <th scope="col">Service</th>
+                <th scope="col">Current Status</th>
+            </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody>
+            <repeat group="{{@results}}" value="{{@result}}">
                 <tr>
-                    <th scope="col">Year</th>
-                    <th scope="col">Make</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Miles</th>
-                    <th scope="col">Service</th>
-                    <th scope="col">Current Status</th>
+                    <td>{{@result.year}}</td>
+                    <td>{{@result.make}}</td>
+                    <td>{{@result.model}}</td>
+                    <td>{{@result.mileage}}</td>
+                    <td>{{@result.maintenance}}</td>
+                    <td>{{@result.status}}</td>
                 </tr>
-                </thead>
-
-                <!-- Table Body -->
-                <tbody>
-                <repeat group="{{@results}}" value="{{@result}}">
-                    <tr>
-                        <td>{{@result.year}}</td>
-                        <td>{{@result.make}}</td>
-                        <td>{{@result.model}}</td>
-                        <td>{{@result.mileage}}</td>
-                        <td>{{@result.maintenance}}</td>
-                        <td>{{@result.status}}</td>
-                    </tr>
-                </repeat>
-                </tbody>
-            </table>
-        </div><!-- End of Table -->
+            </repeat>
+            </tbody>
+        </table>
+    </div><!-- End of Table -->
 
     </div>
 </section>
