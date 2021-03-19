@@ -110,7 +110,27 @@ class DataLayer
         $statement->execute();
 
         //Return the results
-        return $statement->fetchAll(PDO::FETCH_ASSOC);;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * This function gets all user information from the account database table where entries
+     * role = 0 (regular user).
+     * @return mixed Array of account table entries
+     */
+    function getUsers()
+    {
+        //Create a query for the database table
+        $sql = "SELECT * FROM account WHERE role = 0 ORDER BY firstname";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Process results
+        $statement->execute();
+
+        //Return the results
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**

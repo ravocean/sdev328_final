@@ -260,6 +260,11 @@ class Controller
         //Get all vehicles from database, save to f3 hive.
         $this->_f3->set('results', $dataLayer->getOpenServiceTasks());
 
+        //Get users from database, save to f3 hive
+        $this->_f3->set('listUsers', $dataLayer->getUsers());
+
+//        var_dump($this->_f3->get('listUsers'));
+
         //Render the page
         $view = new Template();
         echo $view->render('views/adminDash.html');

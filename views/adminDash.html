@@ -15,27 +15,21 @@
         <div class="row">
             <!--Dashboard-->
             <div class="col col-8">
-                <h2>Temp</h2>
+                <h2>User View</h2>
             </div><!--Dashboard-->
-
-            <!--Buttons-->
-            <div class="col col-3">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-custom" type="button">Schedule a Service</button>
-                    <button class="btn btn-custom" type="button">Check Status</button>
-                </div>
-            </div><!--Buttons-->
         </div><!--Top Content-->
+
 
         <!--Customer Select-->
         <div class="col col-3 mt-3">
             <select class="form-select" aria-label="Default select example">
-                <option selected>Select Customer</option>
-                <option value="1">Mark Otto</option>
-                <option value="2">Jacob Thornton</option>
-                <option value="3">Mike Cruz</option>
+                <option selected>Select...</option>
+                <repeat group="{{@listUsers}}" value="{{@listUser}}">
+                    <option>{{@listUser.firstname}} {{@listUser.lastname}}</option>
+                </repeat>
             </select>
         </div><!--Customer Select-->
+
 
         <!--User Table-->
         <div class="col mt-2">
@@ -122,7 +116,6 @@
                 </tbody>
             </table>
         </div><!-- End of Table -->
-
     </div>
 </section>
 
