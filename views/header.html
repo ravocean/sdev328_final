@@ -37,10 +37,23 @@
 
     <check if="{{isset(@SESSION.user)}}">
       <true>
-        <div class="ml-auto">
+        <div class="nav-item nav-link text-light active ml-auto">
           <p class="m-0 text-light">Welcome, {{@SESSION.user.firstname}} </p>
         </div>
-        <a class="nav-item nav-link text-light active" href="logout">Logout</a>
+        <div class="">
+          <a class="nav-item nav-link text-light active"
+          <check if="@SESSION.user.role == 0">
+            <true>
+              href="userDash"
+            </true>
+            <false>
+              href="adminDash"
+            </false>
+          </check>>Home</a>
+        </div>
+        <div>
+          <a class="nav-item nav-link text-light active" href="logout">Logout</a>
+        </div>
       </true>
       <false>
         <a class="nav-item nav-link text-light active" href="login">Login</a>
