@@ -21,26 +21,39 @@
 <!--  Navbar  -->
 <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="http://rrivera.greenriverdev.com/328/sdev328_final/">South Garage</a>
+    <a class="navbar-brand" href="{{@BASE}}">South Garage</a>
 
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"-->
-<!--            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
-<!--      <div class="navbar-nav">-->
-<!--        <a class="nav-item nav-link active" href="#">Home</a>-->
-<!--        <a class="nav-item nav-link" href="#">Features</a>-->
-<!--        <a class="nav-item nav-link" href="#">Pricing</a>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"-->
+    <!--            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+    <!--      <span class="navbar-toggler-icon"></span>-->
+    <!--    </button>-->
+    <!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+    <!--      <div class="navbar-nav">-->
+    <!--        <a class="nav-item nav-link active" href="#">Home</a>-->
+    <!--        <a class="nav-item nav-link" href="#">Features</a>-->
+    <!--        <a class="nav-item nav-link" href="#">Pricing</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
     <check if="{{isset(@SESSION.user)}}">
       <true>
-        <div class="ml-auto">
+        <div class="nav-item nav-link text-light active ml-auto">
           <p class="m-0 text-light">Welcome, {{@SESSION.user.firstname}} </p>
         </div>
-        <a class="nav-item nav-link text-light active" href="logout">Logout</a>
+        <div class="">
+          <a class="nav-item nav-link text-light active"
+          <check if="@SESSION.user.role == 0">
+            <true>
+              href="userDash"
+            </true>
+            <false>
+              href="adminDash"
+            </false>
+          </check>>Home</a>
+        </div>
+        <div>
+          <a class="nav-item nav-link text-light active" href="logout">Logout</a>
+        </div>
       </true>
       <false>
         <a class="nav-item nav-link text-light active" href="login">Login</a>
