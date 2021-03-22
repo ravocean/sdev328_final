@@ -241,7 +241,7 @@ class Controller
         $this->_f3->set("vModel", isset($_POST['vModel']) ? $_POST['vModel'] : "");
         $this->_f3->set("vYear", isset($_POST['vYear']) ? $_POST['vYear'] : "");
         $this->_f3->set("vMileage", isset($_POST['vMileage']) ? $_POST['vMileage'] : "");
-        $this->_f3->set("vService", isset($_POST['vService']) ? $_POST['vService'] : "");
+//        $this->_f3->set("vService", isset($_POST['vService']) ? $_POST['vService'] : "");
 
         //If the POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -255,10 +255,8 @@ class Controller
             $vehicle->setModel($_POST['vModel']);
             $vehicle->setYear($_POST['vYear']);
             $vehicle->setMileage($_POST['vMileage']);
-            $vehicle->setService($_POST['vService']);
+            $vehicle->setService(implode(", ", $_POST['vService']));
             $vehicle->setStatus('Awaiting Inspection');
-
-//            var_dump(gettype($_POST['vModel']));
 
             //Save vehicle to database
             $dataLayer->saveVehicle($vehicle);

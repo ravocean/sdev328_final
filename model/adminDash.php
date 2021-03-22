@@ -78,7 +78,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
         //Update all-tickets-table
         //Create a query for the database table
         $sql = "SELECT accountID, firstname, lastname, year, make, model, mileage, maintenance, status 
-                FROM account NATURAL JOIN vehicle";
+                FROM account NATURAL JOIN vehicle ORDER BY vehicleID DESC";
 
         //Prepare the statement
         $statement = $dbh->prepare($sql);

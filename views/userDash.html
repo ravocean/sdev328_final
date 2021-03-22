@@ -193,7 +193,7 @@
                                     <div class="accordion-body">
                                         <!--Engine Oil & Filter Change-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
                                                    value="Engine Oil & Filter Change" id="oilChange">
                                             <label class="form-check-label" for="oilChange">
                                                 Engine Oil & Filter Change
@@ -202,7 +202,8 @@
 
                                         <!--Rotate Wheels-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Rotate Wheels"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   value="Rotate Wheels"
                                                    id="wheelRotate">
                                             <label class="form-check-label" for="wheelRotate">
                                                 Rotate Wheels
@@ -211,7 +212,7 @@
 
                                         <!--Wiper Blade Replacement-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
                                                    value="Wiper Blade Replacement"
                                                    id="wiperBlade">
                                             <label class="form-check-label" for="wiperBlade">
@@ -221,7 +222,7 @@
 
                                         <!--Dust and pollen filter-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
                                                    value="Dust and pollen filter"
                                                    id="dustFilter">
                                             <label class="form-check-label" for="dustFilter">
@@ -231,7 +232,8 @@
 
                                         <!--Check Engine Light-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Check Engine Light"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   value="Check Engine Light"
                                                    id="checkEngine">
                                             <label class="form-check-label" for="checkEngine">
                                                 Check Engine Light
@@ -256,7 +258,8 @@
 
                                         <!--Four Wheel Alignment-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Four Wheel Alignment"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   value="Four Wheel Alignment"
                                                    id="alignment">
                                             <label class="form-check-label" for="alignment">
                                                 Four Wheel Alignment
@@ -265,7 +268,8 @@
 
                                         <!--Change brake fluid-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Change brake fluid"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   value="Change brake fluid"
                                                    id="brakeFluid">
                                             <label class="form-check-label" for="brakeFluid">
                                                 Change brake fluid
@@ -274,7 +278,8 @@
 
                                         <!--Bulb or Lighting-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Bulb or Lighting"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   value="Bulb or Lighting"
                                                    id="bulbLight">
                                             <label class="form-check-label" for="bulbLight">
                                                 Bulb or Lighting
@@ -283,7 +288,7 @@
 
                                         <!--Windshield or Glass Repair-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
                                                    value="Windshield or Glass Repair" id="windshield">
                                             <label class="form-check-label" for="windshield">
                                                 Windshield or Glass Repair
@@ -292,7 +297,7 @@
 
                                         <!--Engine Performance -->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
                                                    value="Engine Performance Diagnosis" id="enginePerformance">
                                             <label class="form-check-label" for="enginePerformance">
                                                 Engine Performance
@@ -301,7 +306,8 @@
 
                                         <!--Electrical Systems-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Electrical Systems"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   value="Electrical Systems"
                                                    id="electricalSystems">
                                             <label class="form-check-label" for="electricalSystems">
                                                 Electrical Systems
@@ -310,7 +316,7 @@
 
                                         <!--Transmission Diagnosis-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
                                                    value="Transmission Diagnosis"
                                                    id="transmissionDiagnosis">
                                             <label class="form-check-label" for="transmissionDiagnosis">
@@ -320,10 +326,11 @@
 
                                         <!--Heating or Air Conditioning-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                   value="Heating or Air Conditioning" id="heating">
+                                            <input class="form-check-input" type="checkbox" name="vService[]"
+                                                   id="heating" value="Heating or AC">
+                                            <!--<input class="form-check-input" type="checkbox" name="vService" id="heating" value="Heating or Air Conditioning" >-->
                                             <label class="form-check-label" for="heating">
-                                                Heating or Air Conditioning
+                                                Heating or AC
                                             </label>
                                         </div><!--Heating or Air Conditioning-->
                                     </div>
@@ -342,7 +349,8 @@
                                 <div id="flush-collapseThree" class="accordion-collapse collapse"
                                      aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
-                                        <input type="text" class="form-control" name="vService" placeholder="Enter here" value="{{@vService}}">
+                                        <input type="text" class="form-control" name="vService[]"
+                                               placeholder="Enter here">
                                         <!--  Error Message  -->
                                         <check if="{{isset(@errors['vService'])}}">
                                             <p class="text-danger">{{@errors['vService']}}</p>
