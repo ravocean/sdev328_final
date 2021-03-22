@@ -5,7 +5,7 @@
         <h2 class="display-4">Technician Dashboard</h2>
         <p class="lead">Welcome to your dashboard. You can access customer data</p>
     </div>
-</header> <!--Header-->
+</header>
 
 <!--Page Content-->
 <section class="mainSection">
@@ -13,41 +13,37 @@
 
         <!--Top Content-->
         <div class="row">
+
             <!--Dashboard-->
             <div class="col col-8">
-                <h2>User View</h2>
-                <h5 id="Testing"></h5>
-            </div><!--Dashboard-->
-        </div><!--Top Content-->
-
-
-        <!--User Select Form-->
-        <form id="userSelectForm" method="post" action="#">
-            <div class="col col-3 mt-3">
-                <select id="userSelect" name="userID" class="form-select" aria-label="Default select example">
-                    <option>Select...</option>
-                    <repeat group="{{@listUsers}}" value="{{@listUser}}">
-                        <option value="{{@listUser.accountID}}">{{@listUser.firstname}} {{@listUser.lastname}}</option>
-                    </repeat>
-                </select>
+                <h2>Customer Select</h2>
             </div>
-        </form><!--End of Form-->
+        </div>
 
-        <!--Individual User Table-->
+        <!--User Select-->
+        <div class="col col-3 mt-3">
+            <select id="userSelect" name="userID" class="form-select" aria-label="Default select example">
+                <option>Select...</option>
+                <repeat group="{{@listUsers}}" value="{{@listUser}}">
+                    <option value="{{@listUser.accountID}}">{{@listUser.firstname}} {{@listUser.lastname}}</option>
+                </repeat>
+            </select>
+        </div>
+
+        <!--User Table-->
         <div class="table-responsive">
             <table id="user-table" class="table">
-
+                <!--Table Contents-->
             </table>
-        </div><!-- End of Table -->
+        </div>
 
-        <!--All Users Table-->
-        <h2 class="mt-4">All Tickets</h2>
+        <!--Open Tickets Table-->
+        <h2 class="mt-4">All Open Tickets</h2>
         <div class="table-responsive">
             <table id="ticket-table" class="table">
                 <!--  Table Contents  -->
             </table>
-        </div><!-- End of Table -->
+        </div>
     </div>
 </section>
-
 <include href="views/footer.html"></include>

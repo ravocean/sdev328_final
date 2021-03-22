@@ -15,6 +15,7 @@
                 <div class="form-group">
                     <label>Make</label>
                     <input type="text" class="form-control" name="vMake" placeholder="..." value="{{@vMake}}">
+
                     <!--  Error Message  -->
                     <check if="{{isset(@errors['vMake'])}}">
                         <p class="text-danger">{{@errors['vMake']}}</p>
@@ -25,6 +26,7 @@
                 <div class="form-group">
                     <label>Model</label>
                     <input type="text" class="form-control" name="vModel" placeholder="..." value="{{@vModel}}">
+
                     <!--  Error Message  -->
                     <check if="{{isset(@errors['vModel'])}}">
                         <p class="text-danger">{{@errors['vModel']}}</p>

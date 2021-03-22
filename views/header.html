@@ -10,6 +10,8 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" >
+  <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
 
   <link rel="stylesheet" href="styles/styles.css">
   <title>{{@title}}</title>
@@ -20,19 +22,6 @@
 <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-dark">
   <div class="container">
     <a class="navbar-brand" href="{{@BASE}}">South Garage</a>
-
-    <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"-->
-    <!--            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--      <span class="navbar-toggler-icon"></span>-->
-    <!--    </button>-->
-    <!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
-    <!--      <div class="navbar-nav">-->
-    <!--        <a class="nav-item nav-link active" href="#">Home</a>-->
-    <!--        <a class="nav-item nav-link" href="#">Features</a>-->
-    <!--        <a class="nav-item nav-link" href="#">Pricing</a>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
     <check if="{{isset(@SESSION.user)}}">
       <true>
         <div class="nav-item nav-link text-light active ml-auto">
