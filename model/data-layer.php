@@ -118,7 +118,7 @@ class DataLayer
     function getUserVehicles($userID)
     {
         //Create a query for the database table
-        $sql = "SELECT firstname, lastname, year, make, model, mileage, maintenance, status FROM account NATURAL JOIN vehicle WHERE accountID = :accountID";
+        $sql = "SELECT accountID, vehicleID, firstname, lastname, year, make, model, mileage, maintenance, status FROM account NATURAL JOIN vehicle WHERE accountID = :accountID";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);

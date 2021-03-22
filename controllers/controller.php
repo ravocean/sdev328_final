@@ -236,6 +236,36 @@ class Controller
         //Get user vehicles from database, save to f3 hive.
         $this->_f3->set('results', $dataLayer->getUserVehicles($_SESSION['user']['accountID']));
 
+        //Sticky Forms
+        $this->_f3->set("vMake", isset($_POST['vMake']) ? $_POST['vMake'] : "");
+        $this->_f3->set("vModel", isset($_POST['vModel']) ? $_POST['vModel'] : "");
+        $this->_f3->set("vYear", isset($_POST['vYear']) ? $_POST['vYear'] : "");
+        $this->_f3->set("vMileage", isset($_POST['vMileage']) ? $_POST['vMileage'] : "");
+        $this->_f3->set("vService", isset($_POST['vService']) ? $_POST['vService'] : "");
+
+        //If the POST array is set
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            //Create a Vehicle object to save vehicle data to.
+            $vehicle = new Vehicle();
+
+            //TODO: Validate Vehicle Data Input
+            $vehicle->setAccountID($_SESSION['user']['accountID']);
+            $vehicle->setMake($_POST['vMake']);
+            $vehicle->setModel($_POST['vModel']);
+            $vehicle->setYear($_POST['vYear']);
+            $vehicle->setMileage($_POST['vMileage']);
+            $vehicle->setService($_POST['vService']);
+            $vehicle->setStatus('Awaiting Inspection');
+
+//            var_dump(gettype($_POST['vModel']));
+
+            //Save vehicle to database
+            $dataLayer->saveVehicle($vehicle);
+        }
+
+
+
         //Render the page
         $view = new Template();
         echo $view->render('views/userDash.html');

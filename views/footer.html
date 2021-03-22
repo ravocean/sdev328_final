@@ -52,10 +52,63 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
+    //On load
     $(document).ready(function(){
-        $('#userSelect').change(function(){
-            $('#userSelectForm').submit();
+        //Populate member table on load
+        $('#ticket-table').load('model/adminDash.php', {
+            updateTicketTable : true
         });
+    });
+
+    $('#userSelect').on('change', function(){
+        //Get the selected user's ID
+        let userID = $(this).val();
+
+        //Update the selector table
+        $('#user-table').load('model/adminDash.php', {
+            updateUserTable : userID
+        });
+    });
+
+    //When the edit button is clicked
+    $('#user-table').on('click', '.edit', function(){
+        //Get the edit and save button
+        let input = $(this).closest('tr').find("input");
+        let save = $(this).closest('tr').find(".save");
+        let edit = $(this).closest('tr').find(".edit");
+
+        //Toggle disabled input and save button
+        if(input.attr('disabled')){
+            input.attr('disabled', false);
+            save.attr('disabled', false)
+            edit.html("Cancel");
+        }
+        else{
+            input.attr('disabled', true);
+            save.attr('disabled', true)
+            edit.html("Edit");
+        }
+    });
+
+    //When the edit button is clicked
+    $('#user-table').on('click', '.save', function(){
+        //When the save button is clicked
+            let input = $(this).closest('tr').find("input");
+            let edit = $(this).closest('tr').find(".edit");
+            let vehicleID = $(this).closest('tr').attr('id');
+            let status = input.val();
+
+            //Reset input and buttons
+            edit.html("Edit");
+            input.attr('disabled', true);
+            $(this).attr('disabled', true)
+
+            //Send Status update to database table
+            $('#ticket-table').load('model/adminDash.php', {
+                vehicleID : vehicleID,
+                status : status,
+                updateTicketTable : true
+            });
     });
 </script>
 </body>
