@@ -37,7 +37,7 @@ class Controller
      */
     function login()
     {
-        //If logged in, redirect to appropriate page
+        //If already logged in, redirect to the appropriate page
         if(isset($_SESSION['user'])) {
             $this->_f3->reroute($_SESSION['user']['role'] == 0 ? '/userDash' : '/adminDash');
         }
@@ -183,7 +183,7 @@ class Controller
 
             //Validate password, else display error
             if($validator->validPass($_POST['pass'])){
-                //If passwords match, add to account, else display error
+                //If passwords are valid and match, add to account, else display error
                 if($_POST['pass'] === $_POST['passConfirm']){
                     $account->setPass($_POST['pass']);
                 }
@@ -195,7 +195,7 @@ class Controller
                 $this->_f3->set("errors['pass']", 'Please enter a valid password');
             }
 
-            //If Admin is selected, set account role to 1 for admin, else 0 for user
+            //If Admin checkbox is checked, set account role to 1 for admin, else 0 for user
             $account->setRole(isset($_POST['isAdmin']) ? 1 : 0);
 
             //If no errors are set
@@ -204,7 +204,7 @@ class Controller
                 //Save account to database
                 $dataLayer->saveAccount($account);
 
-                //Save account to f3 hive
+                //Save account object to f3 hive
                 $this->_f3->set('account', $account);
 
                 //Reroute to login
@@ -224,7 +224,7 @@ class Controller
     {
         //If not logged in as a user, redirect to login page
         if($_SESSION['user']['role'] != 0){
-            $this->_f3->reroute('/');
+            $this->_f3->reroute('login');
         }
 
         //Access globals
@@ -249,7 +249,7 @@ class Controller
             //Create a Vehicle object to save vehicle data to.
             $vehicle = new Vehicle();
 
-            //TODO: Validate Vehicle Data Input
+            //Set the vehicle data
             $vehicle->setAccountID($_SESSION['user']['accountID']);
             $vehicle->setMake($_POST['vMake']);
             $vehicle->setModel($_POST['vModel']);
@@ -261,8 +261,6 @@ class Controller
             //Save vehicle to database
             $dataLayer->saveVehicle($vehicle);
         }
-
-
 
         //Render the page
         $view = new Template();
@@ -276,7 +274,7 @@ class Controller
     {
         //If not logged in as a admin, redirect to login page
         if($_SESSION['user']['role'] != 1){
-            $this->_f3->reroute('/');
+            $this->_f3->reroute('login');
         }
 
         //Access globals
@@ -286,15 +284,15 @@ class Controller
         $this->_f3->set("title", "Admin Dashboard");
 
         //Get all vehicles from database, save to f3 hive to populate the open tickets table.
-        $this->_f3->set('results', $dataLayer->getOpenServiceTasks());
+//        $this->_f3->set('results', $dataLayer->getOpenServiceTasks());
 
-        //Get users from database, save to f3 hive to populate the user select
+        //Get users from database, save to f3 hive to populate the user select element
         $this->_f3->set('listUsers', $dataLayer->getUsers());
 
         //If a user has been selected, get the user's vehicles and save to f3 hive to populate user table
-        if(isset($_POST['userID'])){
-            $this->_f3->set("userVehicles", $dataLayer->getUserVehicles($_POST['userID']));
-        }
+//        if(isset($_POST['userID'])){
+//            $this->_f3->set("userVehicles", $dataLayer->getUserVehicles($_POST['userID']));
+//        }
 
         //Render the page
         $view = new Template();
@@ -341,42 +339,41 @@ class Controller
         echo $view->render('views/accountRecovery.html');
     }
 
-    //TODO: This route is for testing adding vehicles to table
-    public function addVehicle(){
-        //Access globals
-        global $dataLayer;
-
-        //Set the page title
-        $this->_f3->set("title", "Create Account");
-
-        //Sticky Forms
-        $this->_f3->set("vMake", isset($_POST['vMake']) ? $_POST['vMake'] : "");
-        $this->_f3->set("vModel", isset($_POST['vModel']) ? $_POST['vModel'] : "");
-        $this->_f3->set("vYear", isset($_POST['vYear']) ? $_POST['vYear'] : "");
-        $this->_f3->set("vMileage", isset($_POST['vMileage']) ? $_POST['vMileage'] : "");
-        $this->_f3->set("vService", isset($_POST['vService']) ? $_POST['vService'] : "");
-
-        //If the POST array is set
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-
-            //Create a Vehicle object to save vehicle data to.
-            $vehicle = new Vehicle();
-
-            //TODO: Validate Vehicle Data Input
-            $vehicle->setAccountID($_SESSION['user']['accountID']);
-            $vehicle->setMake($_POST['vMake']);
-            $vehicle->setModel($_POST['vModel']);
-            $vehicle->setYear($_POST['vYear']);
-            $vehicle->setMileage($_POST['vMileage']);
-            $vehicle->setService($_POST['vService']);
-            $vehicle->setStatus('Awaiting Inspection');
-
-            //Save vehicle to adatabase
-            $dataLayer->saveVehicle($vehicle);
-        }
-
-        //Render the page
-        $view = new Template();
-        echo $view->render('views/addVehicle.html');
-    }
+//    public function addVehicle(){
+//        //Access globals
+//        global $dataLayer;
+//
+//        //Set the page title
+//        $this->_f3->set("title", "Create Account");
+//
+//        //Sticky Forms
+//        $this->_f3->set("vMake", isset($_POST['vMake']) ? $_POST['vMake'] : "");
+//        $this->_f3->set("vModel", isset($_POST['vModel']) ? $_POST['vModel'] : "");
+//        $this->_f3->set("vYear", isset($_POST['vYear']) ? $_POST['vYear'] : "");
+//        $this->_f3->set("vMileage", isset($_POST['vMileage']) ? $_POST['vMileage'] : "");
+//        $this->_f3->set("vService", isset($_POST['vService']) ? $_POST['vService'] : "");
+//
+//        //If the POST array is set
+//        if($_SERVER['REQUEST_METHOD'] == "POST") {
+//
+//            //Create a Vehicle object to save vehicle data to.
+//            $vehicle = new Vehicle();
+//
+//            //TODO: Validate Vehicle Data Input
+//            $vehicle->setAccountID($_SESSION['user']['accountID']);
+//            $vehicle->setMake($_POST['vMake']);
+//            $vehicle->setModel($_POST['vModel']);
+//            $vehicle->setYear($_POST['vYear']);
+//            $vehicle->setMileage($_POST['vMileage']);
+//            $vehicle->setService($_POST['vService']);
+//            $vehicle->setStatus('Awaiting Inspection');
+//
+//            //Save vehicle to adatabase
+//            $dataLayer->saveVehicle($vehicle);
+//        }
+//
+//        //Render the page
+//        $view = new Template();
+//        echo $view->render('views/addVehicle.html');
+//    }
 }

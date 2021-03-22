@@ -70,13 +70,6 @@ $f3->route('GET|POST /adminDash', function()
     $controller->adminDash();
 });
 
-////Route to Add Vehicle
-//$f3->route('GET|POST /addVehicle', function()
-//{
-//    global $controller;
-//    $controller->addVehicle();
-//});
-
 //Route to Logout
 $f3->route('GET|POST /logout', function()
 {
