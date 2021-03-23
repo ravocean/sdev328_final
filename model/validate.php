@@ -63,4 +63,9 @@ class Validate
         $patternPass = '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$!@#%&*\^]).{8,32}$/';
         return preg_match($patternPass, $pass);
     }
+
+    function validZip($zip){
+        $patternZip = '^[0-9]{5}(?:-[0-9]{4})?$^';
+        return preg_match($patternZip, $zip);
+    }
 }

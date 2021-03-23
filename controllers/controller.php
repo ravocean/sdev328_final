@@ -136,6 +136,7 @@ class Controller
 
         //Set the page title
         $this->_f3->set("title", "Create Account");
+        $this->_f3->set('listStates', $dataLayer->getStates());
 
         //Sticky Forms
         $this->_f3->set("email", isset($_POST['email']) ? $_POST['email'] : "");
@@ -145,11 +146,64 @@ class Controller
         $this->_f3->set("lName", isset($_POST['lName']) ? $_POST['lName'] : "");
         $this->_f3->set("isAdmin", isset($_POST['isAdmin']) ? $_POST['isAdmin'] : null);
 
+        $this->_f3->set("address1", isset($_POST['address1']) ? $_POST['address1'] : "");
+        $this->_f3->set("address2", isset($_POST['address2']) ? $_POST['address2'] : "");
+        $this->_f3->set("city", isset($_POST['city']) ? $_POST['city'] : "");
+        $this->_f3->set("state", isset($_POST['state']) ? $_POST['state'] : "");
+        $this->_f3->set("zip", isset($_POST['zip']) ? $_POST['zip'] : "");
+        $this->_f3->set("phone", isset($_POST['phone']) ? $_POST['phone'] : "");
+
         //If the POST array is set
         if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            //Create an Account object to save user data to.
-            $account = new Account();
+
+            if(isset($_POST['isAdmin'])){
+                $account = new Account();
+            }
+            else{
+                $account = new Customer();
+
+                //Validate Address 1, if not empty add both address inputs to customer, else display error
+                if(!empty($_POST['address1'])){
+                    $account->setAddress1($_POST['address1']);
+                    $account->setAddress2($_POST['address2']);
+                }
+                else{
+                    $this->_f3->set("errors['address1']", 'Please Enter an Address');
+                }
+
+                //Validate City, if not empty add to customer, else display error
+                if(!empty($_POST['city'])){
+                    $account->setCity($_POST['city']);
+                }
+                else{
+                    $this->_f3->set("errors['city']", 'Please Enter a city');
+                }
+
+                //Validate State, if valid add to customer, else display error
+                if($validator->validState($_POST['state'])){
+                    $account->setState($_POST['state']);
+                }
+                else{
+                    $this->_f3->set("errors['state']", 'Please Select a State');
+                }
+
+                //Validate Zip
+                if($validator->validZip($_POST['zip'])){
+                    $account->setZip($_POST['zip']);
+                }
+                else{
+                    $this->_f3->set("errors['zip']", 'Please Enter a zip code');
+                }
+
+                //Validate Phone
+                if($validator->validPhone($_POST['phone'])){
+                    $account->setPhone($_POST['phone']);
+                }
+                else{
+                    $this->_f3->set("errors['phone']", 'Please Enter a 10 digit phone number');
+                }
+            }
 
             //Validate first name, if valid add to account, else display error
             if($validator->validName($_POST['fName'])){
@@ -183,7 +237,7 @@ class Controller
 
             //Validate password, else display error
             if($validator->validPass($_POST['pass'])){
-                //If passwords are valid and match, add to account, else display error
+                //If passwords match, add to account, else display error
                 if($_POST['pass'] === $_POST['passConfirm']){
                     $account->setPass($_POST['pass']);
                 }
@@ -195,7 +249,7 @@ class Controller
                 $this->_f3->set("errors['pass']", 'Please enter a valid password');
             }
 
-            //If Admin checkbox is checked, set account role to 1 for admin, else 0 for user
+            //If Admin is selected, set account role to 1 for admin, else 0 for user
             $account->setRole(isset($_POST['isAdmin']) ? 1 : 0);
 
             //If no errors are set
@@ -204,13 +258,15 @@ class Controller
                 //Save account to database
                 $dataLayer->saveAccount($account);
 
-                //Save account object to f3 hive
+                //Save account to f3 hive
                 $this->_f3->set('account', $account);
 
                 //Reroute to login
                 $this->_f3->reroute('login');
             }
         }
+
+//        var_dump($_POST);
 
         //Render the page
         $view = new Template();

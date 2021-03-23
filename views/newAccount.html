@@ -1,21 +1,21 @@
 <include href="views/header.html"></include>
-
 <div class="container">
-
     <div class="col-12 col-lg-10 col-md-12 col-sm-12 mx-auto p-0 mt-5 mb-5">
         <form class="border rounded p-3" method="post" action="#">
 
             <!--  Header  -->
             <h3 class="text-center mb-3">Create a New Account</h3>
-
             <h5 class="mb-3 text-center">Account Information</h5>
 
             <div class="form-row">
+
                 <!--  First Name  -->
                 <div class="form-group col-md-6">
                     <label for="fName">First Name</label>
                     <input type="text" class="form-control" id="fName" name="fName"
                            placeholder="First..." value="{{@fName}}">
+
+                    <!--  Error Message  -->
                     <check if="{{isset(@errors['fName'])}}">
                         <p class="text-danger">{{@errors['fName']}}</p>
                     </check>
@@ -26,6 +26,8 @@
                     <label for="lName">Last Name</label>
                     <input type="text" class="form-control" id="lName" name="lName"
                            placeholder="Last..." value="{{@lName}}">
+
+                    <!--  Error Message  -->
                     <check if="{{isset(@errors['lName'])}}">
                         <p class="text-danger">{{@errors['lName']}}</p>
                     </check>
@@ -33,11 +35,13 @@
             </div>
 
             <div class="form-row">
+
                 <!--  User Name  -->
                 <div class="form-group col-md-12">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" id="email" name="email"
                            placeholder="Email" value="{{@email}}">
+
                     <!--  Error Message  -->
                     <check if="{{isset(@errors['email'])}}">
                         <p class="text-danger">{{@errors['email']}}</p>
@@ -51,25 +55,35 @@
                     <label for="pass">Password</label>
                     <input type="password" class="form-control" id="pass" name="pass"
                            placeholder="Password" value="{{@pass}}">
+
+                    <!--  Error Message  -->
                     <check if="{{isset(@errors['pass'])}}">
                         <p class="text-danger">{{@errors['pass']}}</p>
                     </check>
                 </div>
+
                 <!--  Confirm Password  -->
                 <div class="form-group col-md-6">
                     <label for="passConfirm">Confirm Password</label>
                     <input type="password" class="form-control" id="passConfirm" name="passConfirm"
                            placeholder="Confirm password" value="{{@passConfirm}}">
+
+                    <!--  Error Message  -->
                     <check if="{{isset(@errors['passConfirm'])}}">
                         <p class="text-danger">{{@errors['passConfirm']}}</p>
                     </check>
                 </div>
             </div>
+
+            <!--  Password Alert  -->
             <div class="form-group alert alert-primary text-center" role="alert">
                 <strong>Password must include:</strong> atleast 1 capital letter, 1 lowercase letter, 1 number,
                 1 special character ($!@#%&*\^), and be 8-32 characters in length.
             </div>
+
             <div class="form-row mb-3">
+
+                <!--  Admin Account  -->
                 <label class="mx-auto">Admin Account
                     <input type="checkbox" name="isAdmin" id="isAdmin"
                     <check if="{{isset(@isAdmin)}}">
@@ -78,62 +92,90 @@
                 </label>
             </div>
 
+            <!--  Customer Information  -->
+            <div class="customer-field" id="customerInfo">
+                <!--  Header  -->
+                <h5 class="mb-3 text-center">Profile Information</h5>
 
+                <div class="form-group">
 
-            <!--            <h5 class="mb-3">Profile Information</h5>-->
+                    <!--  Address 1  -->
+                    <label for="address1">Address 1</label>
+                    <input type="text" class="form-control customer-field" id="address1" name="address1"
+                           placeholder="1234 Main St" value="{{@address1}}">
 
-            <!--            <div class="form-row">-->
-            <!--                &lt;!&ndash;  First Name  &ndash;&gt;-->
-            <!--                <div class="form-group col-md-6">-->
-            <!--                    <label for="fName">First Name</label>-->
-            <!--                    <input type="text" class="form-control" id="fName" name="fName"-->
-            <!--                           placeholder="First..." value="{{@fName}}">-->
-            <!--                </div>-->
+                    <!--  Error Message  -->
+                    <check if="{{isset(@errors['address1'])}}">
+                        <p class="text-danger">{{@errors['address1']}}</p>
+                    </check>
+                </div>
+                <div class="form-group">
 
-            <!--                &lt;!&ndash;  Last Name  &ndash;&gt;-->
-            <!--                <div class="form-group col-md-6">-->
-            <!--                    <label for="lName">Last Name</label>-->
-            <!--                    <input type="text" class="form-control" id="lName"-->
-            <!--                           placeholder="Last..." value="{{@lName}}">-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--            <div class="form-group">-->
-            <!--                &lt;!&ndash;  Address 1  &ndash;&gt;-->
-            <!--                <label for="address1">Address</label>-->
-            <!--                <input type="text" class="form-control" id="address1" name="address1"-->
-            <!--                       placeholder="1234 Main St" value="{{@address1}}">-->
-            <!--            </div>-->
-            <!--            &lt;!&ndash;  Address 2  &ndash;&gt;-->
-            <!--            <div class="form-group">-->
-            <!--                <label for="address2">Address 2</label>-->
-            <!--                <input type="text" class="form-control" id="address2" name="address2"-->
-            <!--                       placeholder="Apartment, studio, or floor" value="{{@address2}}">-->
-            <!--            </div>-->
-            <!--            <div class="form-row">-->
-            <!--                &lt;!&ndash;  City  &ndash;&gt;-->
-            <!--                <div class="form-group col-md-6">-->
-            <!--                    <label for="city">City</label>-->
-            <!--                    <input type="text" class="form-control" id="city" name="city" value="{{@city}}">-->
-            <!--                </div>-->
-            <!--                &lt;!&ndash;  State  &ndash;&gt;-->
-            <!--                <div class="form-group col-md-4">-->
-            <!--                    <label for="state">State</label>-->
-            <!--                    <select id="state" class="form-control" name="state">-->
-            <!--                        <option selected>Choose...</option>-->
-            <!--                        <repeat group="{{@listStates}}" value="{{@listState}}">-->
-            <!--                            <check if="{{@listState}} == {{@state}}">-->
-            <!--                                <true><option selected>{{@listState}}</option></true>-->
-            <!--                                <false><option >{{@listState}}</option></false>-->
-            <!--                            </check>-->
-            <!--                        </repeat>-->
-            <!--                    </select>-->
-            <!--                </div>-->
-            <!--                &lt;!&ndash;  Zip  &ndash;&gt;-->
-            <!--                <div class="form-group col-md-2">-->
-            <!--                    <label for="zip">Zip</label>-->
-            <!--                    <input type="text" class="form-control" id="zip" name="zip">-->
-            <!--                </div>-->
-            <!--            </div>-->
+                    <!--  Address 2  -->
+                    <label for="address2">Address 2</label>
+                    <input type="text" class="form-control customer-field" id="address2" name="address2"
+                           placeholder="Apartment, studio, or floor" value="{{@address2}}">
+                </div>
+                <div class="form-row">
+                    <!--  City  -->
+                    <div class="form-group col-md-6">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control customer-field" id="city" name="city" value="{{@city}}">
+
+                        <!--  Error Message  -->
+                        <check if="{{isset(@errors['city'])}}">
+                            <p class="text-danger">{{@errors['city']}}</p>
+                        </check>
+                    </div>
+
+                    <!--  State  -->
+                    <div class="form-group col-md-6">
+                        <label for="state">State</label>
+                        <select id="state" class="form-control customer-field" name="state">
+                            <option selected>Choose...</option>
+                            <repeat group="{{@listStates}}" value="{{@listState}}">
+                                <check if="{{@listState}} == {{@state}}">
+                                    <true><option selected>{{@listState}}</option></true>
+                                    <false><option >{{@listState}}</option></false>
+                                </check>
+                            </repeat>
+                        </select>
+
+                        <!--  Error Message  -->
+                        <check if="{{isset(@errors['state'])}}">
+                            <p class="text-danger">{{@errors['state']}}</p>
+                        </check>
+                    </div>
+
+                </div>
+                <div class="form-row">
+
+                    <!--  Zip  -->
+                    <div class="form-group col-md-6">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control customer-field" id="zip" name="zip"
+                               value="{{@zip}}" maxlength="7">
+                        <small><i>7-Digit Zipcode</i></small>
+
+                        <!--  Error Message  -->
+                        <check if="{{isset(@errors['zip'])}}">
+                            <p class="text-danger">{{@errors['zip']}}</p>
+                        </check>
+                    </div>
+
+                    <!--  Phone Name  -->
+                    <div class="form-group col-md-6">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" class="form-control customer-field" id="phone" name="phone"
+                               placeholder="Phone..." value="{{@phone}}">
+
+                        <!--  Error Message  -->
+                        <check if="{{isset(@errors['phone'])}}">
+                            <p class="text-danger">{{@errors['phone']}}</p>
+                        </check>
+                    </div>
+                </div>
+            </div>
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Create Account</button>

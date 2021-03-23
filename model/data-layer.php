@@ -140,7 +140,11 @@ class DataLayer
     function saveAccount($account)
     {
         //Create a query for the database table
-        $sql = "INSERT INTO account VALUES (null, :email, sha1(:pass), :first, :last, :role)";
+        $sql = "INSERT INTO account VALUES (null, :email, sha1(:pass), :first, :last, :role);";
+
+        if($account instanceof Customer){
+            $sql .= "INSERT INTO customer VALUES(LAST_INSERT_ID(), :addressLine1, :addressLine2, :city, :state, :zip, :phone)";
+        }
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -151,6 +155,15 @@ class DataLayer
         $statement->bindParam(':first', $account->getFirstname(), PDO::PARAM_STR);
         $statement->bindParam(':last', $account->getLastname(), PDO::PARAM_STR);
         $statement->bindParam(':role', $account->getRole(), PDO::PARAM_INT);
+
+        if($account instanceof Customer){
+            $statement->bindParam(':addressLine1', $account->getAddress1(), PDO::PARAM_STR);
+            $statement->bindParam(':addressLine2', $account->getAddress2(), PDO::PARAM_STR);
+            $statement->bindParam(':city', $account->getCity(), PDO::PARAM_STR);
+            $statement->bindParam(':state', $account->getState(), PDO::PARAM_STR);
+            $statement->bindParam(':zip', $account->getZip(), PDO::PARAM_STR);
+            $statement->bindParam(':phone', $account->getPhone(), PDO::PARAM_STR);
+        }
 
         //Process the results
         $statement->execute();
