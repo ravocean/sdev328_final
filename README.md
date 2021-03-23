@@ -1,5 +1,6 @@
 # sdev328_final
 Final project for SDEV 328 with Ryan
+
 [x]Separates all database/business logic using the MVC pattern.
 - All business logic related files are contained in the Model folder files: data-layer.php, adminDash.php, and validate.php.
 
