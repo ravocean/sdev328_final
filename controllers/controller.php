@@ -233,9 +233,6 @@ class Controller
         //Set the page title
         $this->_f3->set("title", "User Dashboard");
 
-        //Get user vehicles from database, save to f3 hive.
-        $this->_f3->set('results', $dataLayer->getUserVehicles($_SESSION['user']['accountID']));
-
         //Sticky Forms
         $this->_f3->set("vMake", isset($_POST['vMake']) ? $_POST['vMake'] : "");
         $this->_f3->set("vModel", isset($_POST['vModel']) ? $_POST['vModel'] : "");
@@ -261,6 +258,9 @@ class Controller
             //Save vehicle to database
             $dataLayer->saveVehicle($vehicle);
         }
+
+        //Get user vehicles from database, save to f3 hive.
+        $this->_f3->set('results', $dataLayer->getUserVehicles($_SESSION['user']['accountID']));
 
         //Render the page
         $view = new Template();
