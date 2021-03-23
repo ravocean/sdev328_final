@@ -15,7 +15,7 @@ class Account{
     private $_role;
 
     /**
-     * This functions returns the account's role
+     * This functions gets the account's role
      * @return mixed
      */
     public function getRole()

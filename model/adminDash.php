@@ -1,13 +1,22 @@
 <?php
+/*
+ * Desc:    This file is used by adminDash.js and adminDash.php to dynamically send
+ *          updates to vehicle status and receive update user and ticket tables for
+ *          for the adminDash page.
+ * Date:    3/1/21
+ * File:    adminDash.php
+ * Auth:    Ryan Rivera & Husrav Khomidov
+ */
 
+//Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Connect to Server
 require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
 
-
-    //If Post data contains a num field with value
+    //If Post data contains vehicleID and status perform the following database query to update
+    //the vehicle status in the database
     if(isset($_POST['vehicleID']) && isset($_POST['status'])){
         //Create a query for the database table
         $sql = "UPDATE vehicle SET status = :status WHERE vehicleID = :vehicleID";
@@ -23,6 +32,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
         $statement->execute();
     }
 
+    //If Post data contains updateUserTable perform the following database query to get a user's
+    //vehicles to populate the user table
     if(isset($_POST['updateUserTable'])){
         //Create a query for the database table
         $sql = "SELECT accountID, vehicleID, firstname, lastname, year, make, model, mileage, maintenance, status FROM account NATURAL JOIN vehicle WHERE accountID = :accountID";
@@ -39,6 +50,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
         //Return the results
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+        //Return an updated table
         echo "<thead>";
         echo "<tr>";
         echo "<th scope=\"col\">Year</th>";
@@ -73,6 +85,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
         echo "</tbody>";
     }
 
+    //If Post data contains updateTicketTable perform the following database query to get all
+    //user vehicles from the database to populate the tickets table
     if(isset($_POST['updateTicketTable'])){
 
         //Update all-tickets-table
@@ -89,6 +103,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
         //Return the results
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+        //Return an updated table
         echo "<thead>";
         echo "<tr>";
         echo "<th scope=\"col\">Firstname</th>";
@@ -117,5 +132,3 @@ require($_SERVER['DOCUMENT_ROOT'].'/../config.php');
         }
         echo "</tbody>";
     }
-
-

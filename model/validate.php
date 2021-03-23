@@ -64,7 +64,13 @@ class Validate
         return preg_match($patternPass, $pass);
     }
 
-    function validZip($zip){
+    /**
+     * Checks that a supplied zip code is valid
+     * @param $zip customer's zip code
+     * @return boolean if zip code is valid
+     */
+    function validZip($zip)
+    {
         $patternZip = '^[0-9]{5}(?:-[0-9]{4})?$^';
         return preg_match($patternZip, $zip);
     }

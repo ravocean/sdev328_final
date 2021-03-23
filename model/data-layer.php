@@ -142,6 +142,7 @@ class DataLayer
         //Create a query for the database table
         $sql = "INSERT INTO account VALUES (null, :email, sha1(:pass), :first, :last, :role);";
 
+        //If $account is a Customer, add Query that adds the Customer data to the customer table
         if($account instanceof Customer){
             $sql .= "INSERT INTO customer VALUES(LAST_INSERT_ID(), :addressLine1, :addressLine2, :city, :state, :zip, :phone)";
         }
@@ -156,6 +157,7 @@ class DataLayer
         $statement->bindParam(':last', $account->getLastname(), PDO::PARAM_STR);
         $statement->bindParam(':role', $account->getRole(), PDO::PARAM_INT);
 
+        //If $account is a Customer, bind the additional information params
         if($account instanceof Customer){
             $statement->bindParam(':addressLine1', $account->getAddress1(), PDO::PARAM_STR);
             $statement->bindParam(':addressLine2', $account->getAddress2(), PDO::PARAM_STR);
