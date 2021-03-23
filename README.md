@@ -42,4 +42,4 @@ Final project for SDEV 328 with Ryan
 - Completed in class.
 
 [x]BONUS  Incorporates Ajax that access data from a JSON file, PHP script, or API. If you implement Ajax, be sure to describe it in your readme file.
-- Implemented ajax commands in adminDash.js that access data using adminDash.php
+- Implemented ajax commands in adminDash.js that access data using adminDash.php to call the database and update the customer and ticket tables of adminDash.html.
