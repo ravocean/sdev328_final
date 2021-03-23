@@ -69,3 +69,7 @@
     align-items: center;
     padding: 15px;
 }
+
+.carousel-item {
+    text-shadow: 1px 1px #414141
+}
