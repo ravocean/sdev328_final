@@ -2,13 +2,13 @@
 Final project for SDEV 328 with Ryan
 
 Separates all database/business logic using the MVC pattern.
-    -All business logic is contained in the data-layer.php and adminDash.php files in the Model folder-
+    -All business logic related files are contained in the Model folder files: data-layer.php, adminDash.php, and validate.php
 
 Routes all URLs and leverages a templating language using the Fat-Free framework.
-    -All ULR's and routes utilize the Fat-Free framework-
+    -All ULR's and routes utilize the Fat-Free framework routes and render functions in index.php and controller.php
     
 Has a clearly defined database layer using PDO and prepared statements. You should have at least two related tables.
-    -All database queries are passed through PDO bindParam functions in the Model layer in data-layer.php and adminDash.php-
+    -All database queries are passed through PDO bindParam functions in the Model layer in data-layer.php and adminDash.php
 
 Data can be viewed and added.
     -Individual User vehicles can be added and viewed from the userDash page-
@@ -17,26 +17,26 @@ Data can be viewed and added.
     -User/Admin accounts can be added from the newAccount page-
 
 Has a history of commits from both team members to a Git repository. Commits are clearly commented.
-    INWORK
+    -There are 50+ commits all with descriptive comments.  A couple slipped-by by accident without a complete comment 
 
 Uses OOP, and defines multiple classes, including at least one inheritance relationship.
-    INWORK
+    -Vehicle, Account, and Customer class objects are used.  The Customer object inherits from the Account object
 
 Contains full Docblocks for all PHP files and follows PEAR standards.
-    INWORK
+    -All functions and classes use docblocks and PEAR standards were followed
 
 Has full validation on the client side through JavaScript and server side through PHP.
-    INWORK
+    -All validation is accomplished server side through validate.php
 
 All code is clean, clear, and well-commented. DRY (Don't Repeat Yourself) is practiced.
-    INWORK
+    -The only violation of this standard was in adminDash.js where i had an issue using jQuery selectors for objects that were appended after the page was loaded, so there is a couple lines of repeated code for .edit and .save
 
 Your submission shows adequate effort for a final project in a full-stack web development course.
-    -We managed over 40 commits and probably over 100 hours of work between the two of us-
+    -We managed 50+ commits and probably over 100 hours of work between the two of us-
     -Our project utilizes HTML/CSS/JS/jQuery/Fat-Free/PDO/MySQL/PHP-
 
 GitHub repo includes readme file outlining how each requirement was met; UML diagram; and ER diagram
-    INWORK
+    -UML and ER diagrams added to directory
 
 Presentation is under 5 minutes, and is well-prepared and delivered.
-    INWORK
+    -Completed in class.
